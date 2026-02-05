@@ -47,9 +47,8 @@ def train_template():
 
     choice = input("\nOpción: ")
     if choice.isdigit() and 0 < int(choice) <= len(pdfs):
-        selected_pdf = str(pdfs[int(choice)-1])
-        # Ejecutamos el trainer como un subproceso para mantener el aislamiento
-        subprocess.run([sys.executable, "jofeg_trainer.py", selected_pdf])
+        # Lanzamos la versión GUI directamente
+        subprocess.run([sys.executable, "jofeg_trainer_gui.py"])
     else:
         print("Operación cancelada.")
     

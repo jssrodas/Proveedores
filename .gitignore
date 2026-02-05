@@ -1,0 +1,18 @@
+
+# Logs
+*.log
+idp_processor.log
+
+# State and temp
+processing_state.json
+__pycache__/
+*.pdf
+!*_MAPA.pdf
+
+# Excel temp
+~$*
+
+# Environment
+.venv/
+venv/
+.env
