@@ -1,0 +1,12 @@
+2026-02-05 13:50:42,109 [INFO] Maestro cargado: 469 proveedores.
+2026-02-05 13:50:42,147 [INFO] Analizando 6 archivos en X:\Facts_Proveedor
+2026-02-05 13:50:43,251 [INFO] Excel actualizado en: c:\Proyectos\Proveedores\Resumen_Facturas_IDP.xlsx
+2026-02-05 13:50:43,252 [INFO] Procesado finalizado. 6 registros nuevos/actualizados.
+2026-02-05 13:59:23,295 [INFO] Maestro cargado: 469 proveedores.
+2026-02-05 13:59:23,353 [INFO] Analizando 6 archivos en X:\Facts_Proveedor
+2026-02-05 13:59:23,494 [WARNING] NO_MATCH: No se encontró proveedor para CIF A31012026 en 0300600200457Cert.pdf
+2026-02-05 13:59:23,833 [WARNING] NO_MATCH: No se encontró proveedor para CIF S6908174S en 222260125463111-R002.PDF
+2026-02-05 13:59:23,950 [WARNING] NO_MATCH: No se encontró proveedor para CIF S2228660B en 3026103910.PDF
+2026-02-05 13:59:24,061 [WARNING] NO_MATCH: No se encontró proveedor para CIF S2228660B en 3026104579.PDF
+2026-02-05 13:59:24,435 [INFO] Excel actualizado en: c:\Proyectos\Proveedores\Resumen_Facturas_IDP.xlsx
+2026-02-05 13:59:24,437 [INFO] Procesado finalizado. 6 registros nuevos/actualizados.
