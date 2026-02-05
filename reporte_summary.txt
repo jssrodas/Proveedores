@@ -1,0 +1,18 @@
+Abriendo: Reporte_CIFs_NoEncontrados_20260205_175858.xlsx\n
+        CIF  Cantidad Facturas  Sospechoso  Prioridad                          Recomendaci¾n
+ESA28346245                 22       False       22.0       ALTA PRIORIDAD - Crear plantilla
+  A28346245                  6       False        6.0       ALTA PRIORIDAD - Crear plantilla
+  S2228660B                  2       False        2.0 MEDIA PRIORIDAD - Considerar plantilla
+ A289406740                  1       False        1.0   BAJA PRIORIDAD - Validar manualmente
+ESA06050930                  1       False        1.0   BAJA PRIORIDAD - Validar manualmente
+  B88027032                  1       False        1.0   BAJA PRIORIDAD - Validar manualmente
+   M-366651                  1       False        1.0   BAJA PRIORIDAD - Validar manualmente
+ A283466245                  1       False        1.0   BAJA PRIORIDAD - Validar manualmente
+  M36606651                  1       False        1.0   BAJA PRIORIDAD - Validar manualmente
+  M36060651                  1       False        1.0   BAJA PRIORIDAD - Validar manualmente
+    M36066I                  1       False        1.0   BAJA PRIORIDAD - Validar manualmente
+    M360661                  1       False        1.0   BAJA PRIORIDAD - Validar manualmente
+  N50606289                  1       False        1.0   BAJA PRIORIDAD - Validar manualmente
+     M86066                  1       False        1.0   BAJA PRIORIDAD - Validar manualmente
+  S6908174S                  1       False        1.0   BAJA PRIORIDAD - Validar manualmente
+  A31012026                  1        True        0.5   REVISAR - Posible error de detecci¾n

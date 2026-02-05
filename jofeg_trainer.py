@@ -26,26 +26,56 @@ class JofegTrainer:
         out_page = out_doc.new_page(width=page.rect.width, height=page.rect.height)
         out_page.show_pdf_page(out_page.rect, doc, 0)
         
-        blocks = page.get_text("blocks")
+        # Usamos 'dict' para obtener líneas individuales en lugar de bloques grandes
+        page_dict = page.get_text("dict")
         mapping_data = []
-
-        for i, b in enumerate(blocks):
-            # b = (x0, y0, x1, y1, "texto", block_no, block_type)
-            rect = fitz.Rect(b[:4])
-            text = b[4].strip()
-            
-            # Dibujar recuadro y número
-            out_page.draw_rect(rect, color=(1, 0, 0), width=0.5)
-            # Fondo blanco para el número para que sea legible
-            text_rect = fitz.Rect(rect.x0, rect.y0 - 10, rect.x0 + 15, rect.y0)
-            out_page.draw_rect(text_rect, color=(1, 1, 1), fill=(1, 1, 1))
-            out_page.insert_text((rect.x0, rect.y0), str(i), fontsize=8, color=(1, 0, 0))
-            
-            mapping_data.append({
-                "id": i,
-                "text": text,
-                "bbox": b[:4] # Coordenadas relativas
-            })
+        
+        counter = 0
+        
+        for block in page_dict["blocks"]:
+            if block["type"] == 0:  # Tipo 0 es texto
+                for line in block["lines"]:
+                    # Obtener bbox de la línea
+                    bbox = line["bbox"]
+                    rect = fitz.Rect(bbox)
+                    
+                    # Obtener texto de la línea (concatenando spans)
+                    text = " ".join([span["text"] for span in line["spans"]]).strip()
+                    
+                    if not text:
+                        continue
+                        
+                    # Dibujar recuadro y número
+                    out_page.draw_rect(rect, color=(1, 0, 0), width=0.5)
+                    
+                    # Fondo blanco para el número para que sea legible
+                    # Colocamos el ID un poco a la izquierda si hay espacio, o arriba si no
+                    if rect.x0 > 20:
+                        # Colocar a la izquierda
+                        text_rect = fitz.Rect(rect.x0 - 18, rect.y0, rect.x0 - 2, rect.y1)
+                        # Centrar verticalmente si la línea es alta
+                        if text_rect.height > 10:
+                            mid_y = (rect.y0 + rect.y1) / 2
+                            text_rect.y0 = mid_y - 5
+                            text_rect.y1 = mid_y + 5
+                    else:
+                        # Colocar arriba (fallback)
+                        text_rect = fitz.Rect(rect.x0, max(0, rect.y0 - 10), rect.x0 + 15, rect.y0)
+                         
+                    out_page.draw_rect(text_rect, color=(1, 1, 1), fill=(1, 1, 1))
+                    
+                    # Calcular posición del texto centrada en el recuadro
+                    tx = text_rect.x0 + 2
+                    ty = text_rect.y1 - 2 # Aproximación para baseline
+                    
+                    out_page.insert_text((tx, ty), str(counter), fontsize=7, color=(1, 0, 0))
+                    
+                    mapping_data.append({
+                        "id": counter,
+                        "text": text,
+                        "bbox": bbox
+                    })
+                    counter += 1
 
         output_map = Path(pdf_path).stem + "_MAPA.pdf"
         out_doc.save(output_map)
@@ -67,8 +97,12 @@ class JofegTrainer:
 
     def save_template(self, cif, mapping_data, selections):
         """Guarda la plantilla asociada a un CIF"""
+        # Normalizar CIF para asegurar coincidencia (mismo método que jofeg_idp_processor)
+        import re
+        cif_key = re.sub(r'[^A-Z0-9]', '', str(cif).upper())
+        
         template = {
-            "cif": cif,
+            "cif": cif_key,
             "fields": {}
         }
         

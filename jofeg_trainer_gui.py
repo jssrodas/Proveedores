@@ -6,7 +6,7 @@ import os
 from pathlib import Path
 
 class JofegTrainerGUI:
-    def __init__(self, root):
+    def __init__(self, root, initial_pdf=None):
         self.root = root
         self.root.title("Jofeg IDP - Entrenador Zonal")
         self.root.geometry("500x550")
@@ -17,6 +17,10 @@ class JofegTrainerGUI:
         self.pdf_path = None
 
         self._build_ui()
+        
+        # Si se proporciona un PDF inicial, cargarlo automáticamente
+        if initial_pdf and os.path.exists(initial_pdf):
+            self.root.after(100, lambda: self._load_pdf(initial_pdf))
 
     def _build_ui(self):
         # Selección de Archivo
@@ -34,7 +38,8 @@ class JofegTrainerGUI:
         frame_id.pack(fill="both", expand=True, pady=10)
 
         self.fields = {
-            "cif": "CIF del Proveedor:",
+            "cif": "✏️ Escribe el CIF (Obligatorio):", # Este es manual
+            "supplier_tax_id": "ID Bloque donde está el CIF (Opcional):",
             "invoice_number": "ID Bloque Factura Nº:",
             "invoice_date": "ID Bloque Fecha:",
             "base_imponible": "ID Bloque Base Imponible:",
@@ -63,16 +68,21 @@ class JofegTrainerGUI:
             filetypes=[("Archivos PDF", "*.pdf")]
         )
         if file_path:
-            self.pdf_path = file_path
-            self.lbl_file.config(text=f"Archivo: {os.path.basename(file_path)}", fg="black")
-            
-            # Generar mapa y abrir PDF
-            try:
-                self.current_mapping = self.trainer.generate_mapping_image(file_path)
-                self.btn_save.config(state="normal")
-                messagebox.showinfo("Mapa Generado", "Se ha abierto el PDF con los números rojos.\nIdentifica los IDs y rellena el formulario.")
-            except Exception as e:
-                messagebox.showerror("Error", f"No se pudo procesar el PDF: {e}")
+            self._load_pdf(file_path)
+    
+    def _load_pdf(self, file_path):
+        """Carga un PDF (usado tanto por selección manual como automática)"""
+        self.pdf_path = file_path
+        self.lbl_file.config(text=f"Archivo: {os.path.basename(file_path)}", fg="black")
+        
+        # Generar mapa y abrir PDF
+        try:
+            self.current_mapping = self.trainer.generate_mapping_image(file_path)
+            self.btn_save.config(state="normal")
+            # FEEDBACK NO INTRUSIVO
+            self.lbl_file.config(text=f"Archivo: {os.path.basename(file_path)} (MAPA ABIERTO)", fg="green")
+        except Exception as e:
+            messagebox.showerror("Error", f"No se pudo procesar el PDF: {e}")
 
     def save_template(self):
         cif = self.entries["cif"].get().strip()
@@ -93,12 +103,16 @@ class JofegTrainerGUI:
 
         try:
             self.trainer.save_template(cif, self.current_mapping, selections)
-            messagebox.showinfo("Éxito", f"Plantilla guardada correctamente para {cif}")
+            # Cierre silencioso tras éxito, el usuario ya ve en el log que se guardó
             self.root.destroy()
         except Exception as e:
             messagebox.showerror("Error", f"No se pudo guardar la plantilla: {e}")
 
 if __name__ == "__main__":
+    import sys
     root = tk.Tk()
-    app = JofegTrainerGUI(root)
+    
+    # Permitir pasar un PDF como argumento de línea de comandos
+    initial_pdf = sys.argv[1] if len(sys.argv) > 1 else None
+    app = JofegTrainerGUI(root, initial_pdf)
     root.mainloop()

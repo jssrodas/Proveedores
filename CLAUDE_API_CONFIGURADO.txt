@@ -1,0 +1,99 @@
+# CONFIGURACIÓN CLAUDE API - COMPLETADA
+================================================================================
+
+## RESUMEN DE INTEGRACIÓN
+
+✓ Claude API configurada correctamente
+✓ API Key almacenada en .env (protegido por .gitignore)
+✓ Librerías instaladas: anthropic, python-dotenv
+✓ Módulo claude_extractor.py creado
+✓ Procesador modificado para modo híbrido
+
+================================================================================
+
+## CÓMO FUNCIONA EL SISTEMA HÍBRIDO
+
+El sistema ahora tiene 3 niveles de extracción en orden de prioridad:
+
+1. **PLANTILLAS** (gratis, máxima precisión)
+   - Si existe plantilla para el CIF → Usa plantilla
+   - Extracción por coordenadas exactas
+   - 100% preciso para proveedores entrenados
+
+2. **CLAUDE API** (coste bajo, alta precisión)
+   - Si NO existe plantilla → Usa Claude Vision
+   - Analiza el PDF con IA
+   - Extrae datos con contexto
+   - Coste: ~$0.01-0.03 por factura
+
+3. **REGEX** (gratis, baja precisión)
+   - Si Claude API falla o no está disponible
+   - Fallback básico
+   - Puede tener errores
+
+================================================================================
+
+## ESTIMACIÓN DE COSTES
+
+Para tu caso actual (43 facturas sin match):
+- Coste estimado: $0.43 - $1.29 USD
+- Con plantillas para los 3-4 proveedores más frecuentes: $0.20 - $0.60 USD
+
+Escenarios mensuales:
+- 50 facturas: $0.50 - $1.50 USD
+- 100 facturas: $1.00 - $3.00 USD
+- 500 facturas: $5.00 - $15.00 USD
+
+================================================================================
+
+## CONFIGURACIÓN ACTUAL
+
+Modo híbrido activado:
+- use_claude_api = True
+- claude_as_fallback_only = True
+
+Esto significa:
+✓ Claude API se usa SOLO cuando NO hay plantilla
+✓ No afecta a facturas ya entrenadas
+✓ Coste mínimo (solo para casos nuevos)
+
+================================================================================
+
+## PRÓXIMOS PASOS
+
+1. PROBAR: Ejecutar procesamiento para ver Claude API en acción
+2. VALIDAR: Revisar los resultados de extracción con extraction_method="CLAUDE_API"
+3. ENTRENAR: Crear plantillas para proveedores frecuentes (reduce costes)
+4. OPTIMIZAR: Ajustar según necesidades
+
+================================================================================
+
+## DESACTIVAR CLAUDE API (si es necesario)
+
+Si quieres volver al modo sin API, edita jofeg_idp_processor.py línea 42:
+
+```python
+def __init__(self, use_claude_api=False, claude_as_fallback_only=True):
+```
+
+Cambiar True → False
+
+================================================================================
+
+## ARCHIVOS CREADOS/MODIFICADOS
+
+NUEVOS:
+- .env (API Key segura)
+- claude_extractor.py (módulo de extracción)
+- test_claude_api.py (script de prueba)
+
+MODIFICADOS:
+- jofeg_idp_processor.py (integración híbrida)
+- requirements.txt (nuevas dependencias)
+
+PROTEGIDOS:
+- .gitignore (incluye .env)
+
+================================================================================
+
+Todo listo para usar Claude API de forma inteligente y económica.

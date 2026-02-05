@@ -26,6 +26,9 @@ REGEX_AMOUNT = r'(\d{1,3}(?:[.,]\d{3})*(?:[.,]\d{2,}))'
 REGEX_IVA_LABEL = r'(?i)(?:IVA|CUOTA|I\.V\.A\.|IMPUESTO)[\s:º=]*(\d{1,3}(?:[.,]\d{3})*(?:[.,]\d{2,}))'
 REGEX_BASE_LABEL = r'(?i)(?:BASE|B\.I\.|BI|NETO|SUBTOTAL)[\s:º=]*(\d{1,3}(?:[.,]\d{3})*(?:[.,]\d{2,}))'
 
+# CIF de JOFEG (cliente) - EXCLUIR de la detección de proveedor
+JOFEG_CIF = "A28346245"
+
 # ==============================================================================
 # LOGGING (Trazabilidad e-EMGDE)
 # ==============================================================================
@@ -39,11 +42,29 @@ logging.basicConfig(
 )
 
 class JofegIDPProcessor:
-    def __init__(self):
+    def __init__(self, use_claude_api=True, claude_as_fallback_only=True):
+        """
+        Args:
+            use_claude_api: Si True, usa Claude API cuando sea necesario
+            claude_as_fallback_only: Si True, solo usa Claude API cuando no hay plantilla
+        """
         self.state = self._load_state()
         self.suppliers = self._load_suppliers()
         self.templates = self._load_templates()
         self._ensure_output_dir()
+        
+        # Configuración de Claude API
+        self.use_claude_api = use_claude_api
+        self.claude_as_fallback_only = claude_as_fallback_only
+        self.claude_extractor = None
+        
+        if self.use_claude_api:
+            try:
+                from claude_extractor import ClaudeIDPExtractor
+                self.claude_extractor = ClaudeIDPExtractor()
+                logging.info("Claude API configurada correctamente")
+            except Exception as e:
+                logging.warning(f"Claude API no disponible: {e}")
 
     def _load_templates(self):
         if os.path.exists(TEMPLATES_PATH):
@@ -131,12 +152,13 @@ class JofegIDPProcessor:
             return f"...{context}..."
         return ""
 
-    def parse_fields(self, text, doc=None):
-        """Extrae campos mediante plantillas (si existen) o regex"""
+    def parse_fields(self, text, doc=None, pdf_path=None):
+        """Extrae campos mediante plantillas (si existen), Claude API o regex"""
         # 1. Identificar CIF para ver si hay plantilla
         norm_text = self.normalize_id(text)
         cifs = re.findall(REGEX_CIF, norm_text)
-        unique_cifs = list(dict.fromkeys(cifs))
+        # Filtrar duplicados y el CIF de JOFEG (incluyendo variante con ES)
+        unique_cifs = [c for c in dict.fromkeys(cifs) if c != JOFEG_CIF and c != "ES" + JOFEG_CIF]
         primary_cif = unique_cifs[0] if unique_cifs else None
         
         # Inicializar resultados con detección básica
@@ -160,9 +182,65 @@ class JofegIDPProcessor:
             for field, info in template.get("fields", {}).items():
                 rect = fitz.Rect(info["bbox"])
                 val = page.get_text("text", clip=rect).strip()
+                
+                # REFINAMIENTO: Si el campo es CIF, limpiarlo usando Regex
+                # Esto es crucial si el usuario seleccionó un bloque grande que contiene el CIF + basura
+                if field == "supplier_tax_id" and val:
+                    found_cifs = re.findall(REGEX_CIF, self.normalize_id(val))
+                    if found_cifs:
+                         # Tomar el primer CIF que no sea el de JOFEG
+                         valid_cifs = [c for c in found_cifs if c != JOFEG_CIF and c != "ES" + JOFEG_CIF]
+                         if valid_cifs:
+                             val = valid_cifs[0]
+                
                 if val: results[field] = val
 
-        # 3. Completar con REGEX los campos vacíos (mecanismo de respaldo)
+                if val: results[field] = val
+
+        # 2a. Fallback: Intentar matching por NOMBRE DE ARCHIVO
+        # Si no encontramos CIF o no hay plantilla por CIF, buscar si alguna plantilla
+        # tiene definida una regla de coincidencia por nombre de archivo
+        elif doc:
+             # Buscar en todas las plantillas si alguna tiene "filename_pattern"
+             for tmpl_cif, tmpl_data in self.templates.items():
+                 pattern = tmpl_data.get("filename_pattern")
+                 if pattern and pattern in Path(pdf_path).name:
+                     logging.info(f"Usando plantilla por nombre de archivo ({pattern}) para {Path(pdf_path).name}")
+                     results["extraction_method"] = "TEMPLATE_NAME"
+                     results["supplier_tax_id"] = tmpl_cif # Asignar el CIF de la plantilla
+                     
+                     page = doc[0]
+                     for field, info in tmpl_data.get("fields", {}).items():
+                        rect = fitz.Rect(info["bbox"])
+                        val = page.get_text("text", clip=rect).strip()
+                        if val: results[field] = val
+                     break
+
+        # 3. Si NO hay plantilla Y Claude API está disponible, usarlo
+        elif (self.use_claude_api and 
+              self.claude_extractor and 
+              self.claude_as_fallback_only and 
+              primary_cif not in self.templates and
+              pdf_path):
+            
+            try:
+                logging.info(f"Usando Claude API para {Path(pdf_path).name}")
+                claude_results = self.claude_extractor.extract_from_pdf(pdf_path)
+                
+                if claude_results:
+                    # Usar resultados de Claude
+                    for key, value in claude_results.items():
+                        if value:
+                            results[key] = value
+                    
+                    logging.info(f"Claude API extrajo correctamente de {Path(pdf_path).name}")
+                else:
+                    logging.warning(f"Claude API no pudo extraer datos de {Path(pdf_path).name}")
+            
+            except Exception as e:
+                logging.error(f"Error en Claude API para {Path(pdf_path).name}: {e}")
+
+        # 4. Completar con REGEX los campos vacíos (último recurso)
         if not results["invoice_number"]:
             m = re.search(r'(?:FACTURA|INVOICE|RECIBO|Nº|FACT[\.\s])[\s:º]*([A-Z0-9\-/]+)', text, re.IGNORECASE)
             results["invoice_number"] = m.group(1) if m else None
@@ -185,6 +263,39 @@ class JofegIDPProcessor:
 
         return results
 
+    def _cleanup_stale_data(self, current_pdf_files):
+        """Elimina del Estado y del Excel los archivos que ya no existen en disco"""
+        current_paths = {str(p) for p in current_pdf_files}
+        
+        # 1. Limpiar State (JSON)
+        initial_state_count = len(self.state)
+        # Identificar claves que no están en los paths actuales
+        # Nota: las claves en state son str(absolute_path)
+        keys_to_remove = [k for k in self.state if k not in current_paths]
+        
+        for k in keys_to_remove:
+            del self.state[k]
+        
+        if len(self.state) < initial_state_count:
+            self._save_state()
+            logging.info(f"Limpieza de Estado: Se eliminaron {initial_state_count - len(self.state)} entradas obsoletas.")
+            
+        # 2. Limpiar Excel
+        if os.path.exists(OUTPUT_XLSX):
+            try:
+                df = pd.read_excel(OUTPUT_XLSX)
+                initial_rows = len(df)
+                
+                # Filtrar solo las que existen
+                # Aseguramos que file_path sea string para comparar
+                df_clean = df[df['file_path'].astype(str).isin(current_paths)]
+                
+                if len(df_clean) < initial_rows:
+                    df_clean.to_excel(OUTPUT_XLSX, index=False, engine='openpyxl')
+                    logging.info(f"Limpieza de Excel: Se eliminaron {initial_rows - len(df_clean)} filas obsoletas.")
+            except Exception as e:
+                logging.error(f"Error limpiando Excel: {e}")
+
     def process_all(self):
         results = []
         if not os.path.exists(INPUT_PDF_DIR):
@@ -194,12 +305,29 @@ class JofegIDPProcessor:
         pdf_files = list(Path(INPUT_PDF_DIR).glob("**/*.pdf"))
         logging.info(f"Analizando {len(pdf_files)} archivos en {INPUT_PDF_DIR}")
 
+        # LIMPIEZA: Eliminar registros de archivos que ya no existen
+        self._cleanup_stale_data(pdf_files)
+
+        # Cargar estados previos del Excel para forzar reprocesamiento de errores
+        previous_statuses = {}
+        if os.path.exists(OUTPUT_XLSX):
+            try:
+                df_prev = pd.read_excel(OUTPUT_XLSX)
+                # Crear diccionario {file_path: status}
+                previous_statuses = dict(zip(df_prev['file_path'].astype(str), df_prev['status']))
+            except:
+                pass
+
         for pdf_path in pdf_files:
             fingerprint = self.get_file_fingerprint(pdf_path)
             file_key = str(pdf_path)
 
             # Incremental: Saltamos si ya está procesado y no ha cambiado
-            if file_key in self.state and self.state[file_key] == fingerprint:
+            # EXCEPCIÓN: Si el estado previo fue NO_MATCH o ERROR, reprocesamos SIEMPRE
+            prev_status = previous_statuses.get(file_key, "UNKNOWN")
+            force_reprocess = (prev_status in ["NO_MATCH", "ERROR"])
+            
+            if not force_reprocess and file_key in self.state and self.state[file_key] == fingerprint:
                 continue
 
             row = {
@@ -219,7 +347,7 @@ class JofegIDPProcessor:
 
             # Necesitamos el documento abierto para el parseo por coordenadas
             doc = fitz.open(pdf_path)
-            fields = self.parse_fields(text, doc)
+            fields = self.parse_fields(text, doc, pdf_path=pdf_path)
             doc.close()
             
             row.update(fields)
@@ -265,6 +393,15 @@ class JofegIDPProcessor:
             logging.info("No hay cambios detectados desde la última ejecución.")
 
     def export(self, data):
+        # Sanitizar datos para Excel (eliminar caracteres de control)
+        import string
+        ILLEGAL_CHARACTERS_RE = re.compile(r'[\x00-\x08\x0b-\x0c\x0e-\x1f\x7f-\x9f]')
+        
+        for row in data:
+            for key, value in row.items():
+                if isinstance(value, str):
+                    row[key] = ILLEGAL_CHARACTERS_RE.sub('', value)
+        
         df_new = pd.DataFrame(data)
         if os.path.exists(OUTPUT_XLSX):
             try:

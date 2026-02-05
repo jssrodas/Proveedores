@@ -1,0 +1,34 @@
+======================================================================
+RESUMEN DEL PROCESAMIENTO CON CLAUDE API
+======================================================================
+
+Total facturas procesadas: 68
+
+--- POR M╔TODO DE EXTRACCIËN ---
+extraction_method
+CLAUDE_API    13
+REGEX          1
+Name: count, dtype: int64
+
+--- POR STATUS ---
+status
+NO_MATCH    43
+OK          25
+Name: count, dtype: int64
+
+--- DETALLES CLAUDE API ---
+Total facturas con Claude: 13
+Claude OK: 4
+Claude NO_MATCH: 9
+
+--- PLANTILLAS ---
+Total con plantilla: 0
+
+--- REGEX (Fallback) ---
+Total con regex: 1
+Regex OK: 0
+Regex NO_MATCH: 1
+
+======================================================================
+AN┴LISIS COMPLETADO
+======================================================================

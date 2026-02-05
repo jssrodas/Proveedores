@@ -10,3 +10,593 @@
 2026-02-05 13:59:24,061 [WARNING] NO_MATCH: No se encontró proveedor para CIF S2228660B en 3026104579.PDF
 2026-02-05 13:59:24,435 [INFO] Excel actualizado en: c:\Proyectos\Proveedores\Resumen_Facturas_IDP.xlsx
 2026-02-05 13:59:24,437 [INFO] Procesado finalizado. 6 registros nuevos/actualizados.
+2026-02-05 16:46:43,199 [INFO] Maestro cargado: 469 proveedores.
+2026-02-05 16:46:43,238 [INFO] Analizando 68 archivos en X:\Facts_Proveedor
+2026-02-05 16:46:44,867 [WARNING] NO_MATCH: No se encontró proveedor para CIF F20260129 en 10524625.pdf
+2026-02-05 16:46:44,981 [WARNING] NO_MATCH: No se encontró proveedor para CIF S6908174S en 222260125676011-N002.PDF
+2026-02-05 16:46:45,072 [WARNING] NO_MATCH: No se encontró proveedor para CIF S6908174S en 222260130678479-N002.PDF
+2026-02-05 16:46:45,165 [WARNING] NO_MATCH: No se encontró proveedor para CIF S6908174S en 222260130678480-N002.PDF
+2026-02-05 16:46:45,269 [WARNING] NO_MATCH: No se encontró proveedor para CIF S6908174S en 222260130678481-N002.PDF
+2026-02-05 16:46:45,361 [WARNING] NO_MATCH: No se encontró proveedor para CIF S6908174S en 222260130678482-N002.PDF
+2026-02-05 16:46:45,495 [WARNING] NO_MATCH: No se encontró proveedor para CIF S11042026 en F26-10463.pdf
+2026-02-05 16:46:45,603 [WARNING] NO_MATCH: No se encontró proveedor para CIF S11042026 en F26-14919.pdf
+2026-02-05 16:46:45,690 [WARNING] NO_MATCH: No se encontró proveedor para CIF S11042026 en F26-16794.pdf
+2026-02-05 16:46:45,776 [WARNING] NO_MATCH: No se encontró proveedor para CIF A3451000B en Factura 26000149.pdf
+2026-02-05 16:46:45,869 [WARNING] NO_MATCH: No se encontró proveedor para CIF A26100113 en Factura de clientes_261001136_20260128_081434.pdf
+2026-02-05 16:46:46,043 [WARNING] NO_MATCH: No se encontró proveedor para CIF 12026281N en Factura venta VE 260197.pdf
+2026-02-05 16:46:46,135 [WARNING] NO_MATCH: No se encontró proveedor para CIF A00112304 en Factura_1_260435.pdf
+2026-02-05 16:46:46,225 [WARNING] NO_MATCH: No se encontró proveedor para CIF N50606286 en Factura_5060628633_20260127.PDF
+2026-02-05 16:46:46,313 [WARNING] NO_MATCH: No se encontró proveedor para CIF N50606289 en Factura_5060628928_20260128.PDF
+2026-02-05 16:46:46,407 [WARNING] NO_MATCH: No se encontró proveedor para CIF N50606289 en Factura_5060628929_20260128.PDF
+2026-02-05 16:46:46,492 [WARNING] NO_MATCH: No se encontró proveedor para CIF N50606289 en Factura_5060628930_20260128.PDF
+2026-02-05 16:46:46,587 [WARNING] NO_MATCH: No se encontró proveedor para CIF N50606293 en Factura_5060629312_20260129.PDF
+2026-02-05 16:46:46,723 [WARNING] NO_MATCH: No se encontró proveedor para CIF N50606293 en Factura_5060629313_20260129.PDF
+2026-02-05 16:46:46,817 [WARNING] NO_MATCH: No se encontró proveedor para CIF N50606297 en Factura_5060629745_20260130.PDF
+2026-02-05 16:46:46,902 [WARNING] NO_MATCH: No se encontró proveedor para CIF N50606303 en Factura_5060630302_20260131.PDF
+2026-02-05 16:46:46,986 [WARNING] NO_MATCH: No se encontró proveedor para CIF N50606303 en Factura_5060630303_20260131.PDF
+2026-02-05 16:46:47,339 [WARNING] NO_MATCH: No se encontró proveedor para CIF S11042026 en FVA26-1381.pdf
+2026-02-05 16:46:47,424 [WARNING] NO_MATCH: No se encontró proveedor para CIF S11042026 en FVA26-906.pdf
+2026-02-05 16:46:47,527 [WARNING] NO_MATCH: No se encontró proveedor para CIF A11092025 en ILAB5C71.pdf
+2026-02-05 16:46:47,621 [WARNING] NO_MATCH: No se encontró proveedor para CIF N29211250 en ILAE25A.pdf
+2026-02-05 16:46:47,715 [WARNING] NO_MATCH: No se encontró proveedor para CIF 11748200D en inv-6830047093.pdf
+2026-02-05 16:46:47,804 [WARNING] NO_MATCH: No se encontró proveedor para CIF 28892170B en P2 Kärcher su factura núm. 1531731878.pdf
+2026-02-05 16:46:47,916 [WARNING] NO_MATCH: No se encontró proveedor para CIF F2505695F en P2426 VF2505695.pdf
+2026-02-05 16:46:48,006 [WARNING] NO_MATCH: No se encontró proveedor para CIF 41120060L en P2434 Kärcher su factura núm. 1531729480.pdf
+2026-02-05 16:46:48,193 [WARNING] NO_MATCH: No se encontró proveedor para CIF S2228660B en P55_3026102099.PDF
+2026-02-05 16:46:48,289 [WARNING] NO_MATCH: No se encontró proveedor para CIF N50606264 en P56_Factura_5060626424_20260121.PDF
+2026-02-05 16:46:48,655 [WARNING] NO_MATCH: No se encontró proveedor para CIF N50606268 en P60_Factura_5060626894_20260122.PDF
+2026-02-05 16:46:48,755 [WARNING] NO_MATCH: No se encontró proveedor para CIF 66461400C en P63_Kärcher su factura núm. 1580275219.pdf
+2026-02-05 16:46:48,853 [WARNING] NO_MATCH: No se encontró proveedor para CIF 17655253L en P64_Kärcher su factura núm. 1531735795.pdf
+2026-02-05 16:46:48,947 [WARNING] NO_MATCH: No se encontró proveedor para CIF 95301010C en P65_Kärcher su factura núm. 1580275395.pdf
+2026-02-05 16:46:49,044 [WARNING] NO_MATCH: No se encontró proveedor para CIF N1808195S en P67_Factura 9814032906.pdf
+2026-02-05 16:46:49,137 [WARNING] NO_MATCH: No se encontró proveedor para CIF N50606276 en P69_Factura_5060627634_20260123.PDF
+2026-02-05 16:46:49,355 [WARNING] NO_MATCH: No se encontró proveedor para CIF A2600020F en VA2600020.pdf
+2026-02-05 17:51:00,662 [INFO] Maestro cargado: 469 proveedores.
+2026-02-05 17:51:02,284 [INFO] Claude API configurada correctamente
+2026-02-05 17:51:02,322 [INFO] Analizando 68 archivos en X:\Facts_Proveedor
+2026-02-05 17:51:02,425 [INFO] Usando Claude API para 0916312781.pdf
+2026-02-05 17:51:02,901 [INFO] Llamando a Claude API para 0916312781.pdf
+2026-02-05 17:51:04,537 [INFO] HTTP Request: POST https://api.anthropic.com/v1/messages "HTTP/1.1 200 OK"
+2026-02-05 17:51:04,548 [INFO] Claude API extrajo: CIF=ESA28346245
+2026-02-05 17:51:04,548 [INFO] Claude API extrajo correctamente de 0916312781.pdf
+2026-02-05 17:51:04,559 [WARNING] NO_MATCH: No se encontró proveedor para CIF ESA28346245 en 0916312781.pdf
+2026-02-05 17:51:04,658 [INFO] Usando Claude API para 0916318615.pdf
+2026-02-05 17:51:05,279 [INFO] Llamando a Claude API para 0916318615.pdf
+2026-02-05 17:51:06,731 [INFO] HTTP Request: POST https://api.anthropic.com/v1/messages "HTTP/1.1 200 OK"
+2026-02-05 17:51:06,731 [INFO] Claude API extrajo: CIF=A28940740
+2026-02-05 17:51:06,732 [INFO] Claude API extrajo correctamente de 0916318615.pdf
+2026-02-05 17:51:06,826 [INFO] Usando Claude API para 0916318616.pdf
+2026-02-05 17:51:07,247 [INFO] Llamando a Claude API para 0916318616.pdf
+2026-02-05 17:51:09,296 [INFO] HTTP Request: POST https://api.anthropic.com/v1/messages "HTTP/1.1 200 OK"
+2026-02-05 17:51:09,298 [INFO] Claude API extrajo: CIF=A28940740
+2026-02-05 17:51:09,298 [INFO] Claude API extrajo correctamente de 0916318616.pdf
+2026-02-05 17:51:09,390 [INFO] Usando Claude API para 0916318617.pdf
+2026-02-05 17:51:09,623 [INFO] Llamando a Claude API para 0916318617.pdf
+2026-02-05 17:51:11,693 [INFO] HTTP Request: POST https://api.anthropic.com/v1/messages "HTTP/1.1 200 OK"
+2026-02-05 17:51:11,696 [INFO] Claude API extrajo: CIF=A28940740
+2026-02-05 17:51:11,698 [INFO] Claude API extrajo correctamente de 0916318617.pdf
+2026-02-05 17:51:11,786 [INFO] Usando Claude API para 0916325990.pdf
+2026-02-05 17:51:12,158 [INFO] Llamando a Claude API para 0916325990.pdf
+2026-02-05 17:51:13,573 [INFO] HTTP Request: POST https://api.anthropic.com/v1/messages "HTTP/1.1 200 OK"
+2026-02-05 17:51:13,575 [INFO] Claude API extrajo: CIF=A28940740
+2026-02-05 17:51:13,575 [INFO] Claude API extrajo correctamente de 0916325990.pdf
+2026-02-05 17:51:13,711 [INFO] Usando Claude API para 0916325991.pdf
+2026-02-05 17:51:14,320 [INFO] Llamando a Claude API para 0916325991.pdf
+2026-02-05 17:51:15,829 [INFO] HTTP Request: POST https://api.anthropic.com/v1/messages "HTTP/1.1 200 OK"
+2026-02-05 17:51:15,829 [INFO] Claude API extrajo: CIF=ESA28346245
+2026-02-05 17:51:15,829 [INFO] Claude API extrajo correctamente de 0916325991.pdf
+2026-02-05 17:51:15,829 [WARNING] NO_MATCH: No se encontró proveedor para CIF ESA28346245 en 0916325991.pdf
+2026-02-05 17:51:15,918 [INFO] Usando Claude API para 0916325993.pdf
+2026-02-05 17:51:16,284 [INFO] Llamando a Claude API para 0916325993.pdf
+2026-02-05 17:51:17,579 [INFO] HTTP Request: POST https://api.anthropic.com/v1/messages "HTTP/1.1 200 OK"
+2026-02-05 17:51:17,579 [INFO] Claude API extrajo: CIF=ESA28346245
+2026-02-05 17:51:17,579 [INFO] Claude API extrajo correctamente de 0916325993.pdf
+2026-02-05 17:51:17,586 [WARNING] NO_MATCH: No se encontró proveedor para CIF ESA28346245 en 0916325993.pdf
+2026-02-05 17:51:17,670 [INFO] Usando Claude API para 0916333360.pdf
+2026-02-05 17:51:18,055 [INFO] Llamando a Claude API para 0916333360.pdf
+2026-02-05 17:51:19,371 [INFO] HTTP Request: POST https://api.anthropic.com/v1/messages "HTTP/1.1 200 OK"
+2026-02-05 17:51:19,371 [INFO] Claude API extrajo: CIF=A28940740
+2026-02-05 17:51:19,371 [INFO] Claude API extrajo correctamente de 0916333360.pdf
+2026-02-05 17:51:19,500 [INFO] Usando Claude API para 0916333361.pdf
+2026-02-05 17:51:20,107 [INFO] Llamando a Claude API para 0916333361.pdf
+2026-02-05 17:51:21,559 [INFO] HTTP Request: POST https://api.anthropic.com/v1/messages "HTTP/1.1 200 OK"
+2026-02-05 17:51:21,559 [INFO] Claude API extrajo: CIF=ESA28346245
+2026-02-05 17:51:21,561 [INFO] Claude API extrajo correctamente de 0916333361.pdf
+2026-02-05 17:51:21,561 [WARNING] NO_MATCH: No se encontró proveedor para CIF ESA28346245 en 0916333361.pdf
+2026-02-05 17:51:21,648 [INFO] Usando Claude API para 0916340046.pdf
+2026-02-05 17:51:22,031 [INFO] Llamando a Claude API para 0916340046.pdf
+2026-02-05 17:51:23,601 [INFO] HTTP Request: POST https://api.anthropic.com/v1/messages "HTTP/1.1 200 OK"
+2026-02-05 17:51:23,601 [INFO] Claude API extrajo: CIF=A28940740
+2026-02-05 17:51:23,601 [INFO] Claude API extrajo correctamente de 0916340046.pdf
+2026-02-05 17:51:23,700 [INFO] Usando Claude API para 0916340047.pdf
+2026-02-05 17:51:24,116 [INFO] Llamando a Claude API para 0916340047.pdf
+2026-02-05 17:51:25,562 [INFO] HTTP Request: POST https://api.anthropic.com/v1/messages "HTTP/1.1 200 OK"
+2026-02-05 17:51:25,564 [INFO] Claude API extrajo: CIF=A28940740
+2026-02-05 17:51:25,564 [INFO] Claude API extrajo correctamente de 0916340047.pdf
+2026-02-05 17:51:25,651 [INFO] Usando Claude API para 0916342477.pdf
+2026-02-05 17:51:25,864 [INFO] Llamando a Claude API para 0916342477.pdf
+2026-02-05 17:51:27,387 [INFO] HTTP Request: POST https://api.anthropic.com/v1/messages "HTTP/1.1 200 OK"
+2026-02-05 17:51:27,389 [INFO] Claude API extrajo: CIF=A28940740
+2026-02-05 17:51:27,390 [INFO] Claude API extrajo correctamente de 0916342477.pdf
+2026-02-05 17:51:27,479 [INFO] Usando Claude API para 0916347139.pdf
+2026-02-05 17:51:27,828 [INFO] Llamando a Claude API para 0916347139.pdf
+2026-02-05 17:51:29,142 [INFO] HTTP Request: POST https://api.anthropic.com/v1/messages "HTTP/1.1 200 OK"
+2026-02-05 17:51:29,142 [INFO] Claude API extrajo: CIF=ESA28346245
+2026-02-05 17:51:29,143 [INFO] Claude API extrajo correctamente de 0916347139.pdf
+2026-02-05 17:51:29,144 [WARNING] NO_MATCH: No se encontró proveedor para CIF ESA28346245 en 0916347139.pdf
+2026-02-05 17:51:29,228 [INFO] Usando Claude API para 0916347869.pdf
+2026-02-05 17:51:29,451 [INFO] Llamando a Claude API para 0916347869.pdf
+2026-02-05 17:51:30,742 [INFO] HTTP Request: POST https://api.anthropic.com/v1/messages "HTTP/1.1 200 OK"
+2026-02-05 17:51:30,744 [INFO] Claude API extrajo: CIF=A28940740
+2026-02-05 17:51:30,744 [INFO] Claude API extrajo correctamente de 0916347869.pdf
+2026-02-05 17:51:30,837 [INFO] Usando Claude API para 0916348525.pdf
+2026-02-05 17:51:31,073 [INFO] Llamando a Claude API para 0916348525.pdf
+2026-02-05 17:51:32,326 [INFO] HTTP Request: POST https://api.anthropic.com/v1/messages "HTTP/1.1 200 OK"
+2026-02-05 17:51:32,327 [INFO] Claude API extrajo: CIF=A28940740
+2026-02-05 17:51:32,328 [INFO] Claude API extrajo correctamente de 0916348525.pdf
+2026-02-05 17:51:32,414 [INFO] Usando Claude API para 0916362747.pdf
+2026-02-05 17:51:32,801 [INFO] Llamando a Claude API para 0916362747.pdf
+2026-02-05 17:51:34,320 [INFO] HTTP Request: POST https://api.anthropic.com/v1/messages "HTTP/1.1 200 OK"
+2026-02-05 17:51:34,321 [INFO] Claude API extrajo: CIF=A289406740
+2026-02-05 17:51:34,322 [INFO] Claude API extrajo correctamente de 0916362747.pdf
+2026-02-05 17:51:34,322 [WARNING] NO_MATCH: No se encontró proveedor para CIF A289406740 en 0916362747.pdf
+2026-02-05 17:51:34,443 [INFO] Usando Claude API para 10524625.pdf
+2026-02-05 17:51:34,720 [INFO] Llamando a Claude API para 10524625.pdf
+2026-02-05 17:51:36,079 [INFO] HTTP Request: POST https://api.anthropic.com/v1/messages "HTTP/1.1 200 OK"
+2026-02-05 17:51:36,079 [INFO] Claude API extrajo: CIF=ESA28346245
+2026-02-05 17:51:36,079 [INFO] Claude API extrajo correctamente de 10524625.pdf
+2026-02-05 17:51:36,079 [WARNING] NO_MATCH: No se encontró proveedor para CIF ESA28346245 en 10524625.pdf
+2026-02-05 17:51:36,187 [INFO] Usando Claude API para 222260125676011-N002.PDF
+2026-02-05 17:51:36,748 [INFO] Llamando a Claude API para 222260125676011-N002.PDF
+2026-02-05 17:51:38,166 [INFO] HTTP Request: POST https://api.anthropic.com/v1/messages "HTTP/1.1 200 OK"
+2026-02-05 17:51:38,168 [INFO] Claude API extrajo: CIF=ESA28346245
+2026-02-05 17:51:38,168 [INFO] Claude API extrajo correctamente de 222260125676011-N002.PDF
+2026-02-05 17:51:38,170 [WARNING] NO_MATCH: No se encontró proveedor para CIF ESA28346245 en 222260125676011-N002.PDF
+2026-02-05 17:51:38,261 [INFO] Usando Claude API para 222260130678479-N002.PDF
+2026-02-05 17:51:38,801 [INFO] Llamando a Claude API para 222260130678479-N002.PDF
+2026-02-05 17:51:40,148 [INFO] HTTP Request: POST https://api.anthropic.com/v1/messages "HTTP/1.1 200 OK"
+2026-02-05 17:51:40,150 [INFO] Claude API extrajo: CIF=ESA28346245
+2026-02-05 17:51:40,151 [INFO] Claude API extrajo correctamente de 222260130678479-N002.PDF
+2026-02-05 17:51:40,151 [WARNING] NO_MATCH: No se encontró proveedor para CIF ESA28346245 en 222260130678479-N002.PDF
+2026-02-05 17:51:40,252 [INFO] Usando Claude API para 222260130678480-N002.PDF
+2026-02-05 17:51:40,776 [INFO] Llamando a Claude API para 222260130678480-N002.PDF
+2026-02-05 17:51:42,268 [INFO] HTTP Request: POST https://api.anthropic.com/v1/messages "HTTP/1.1 200 OK"
+2026-02-05 17:51:42,268 [INFO] Claude API extrajo: CIF=ESA28346245
+2026-02-05 17:51:42,270 [INFO] Claude API extrajo correctamente de 222260130678480-N002.PDF
+2026-02-05 17:51:42,271 [WARNING] NO_MATCH: No se encontró proveedor para CIF ESA28346245 en 222260130678480-N002.PDF
+2026-02-05 17:51:42,371 [INFO] Usando Claude API para 222260130678481-N002.PDF
+2026-02-05 17:51:42,914 [INFO] Llamando a Claude API para 222260130678481-N002.PDF
+2026-02-05 17:51:44,261 [INFO] HTTP Request: POST https://api.anthropic.com/v1/messages "HTTP/1.1 200 OK"
+2026-02-05 17:51:44,262 [INFO] Claude API extrajo: CIF=ESA28346245
+2026-02-05 17:51:44,263 [INFO] Claude API extrajo correctamente de 222260130678481-N002.PDF
+2026-02-05 17:51:44,263 [WARNING] NO_MATCH: No se encontró proveedor para CIF ESA28346245 en 222260130678481-N002.PDF
+2026-02-05 17:51:44,364 [INFO] Usando Claude API para 222260130678482-N002.PDF
+2026-02-05 17:51:44,889 [INFO] Llamando a Claude API para 222260130678482-N002.PDF
+2026-02-05 17:51:46,379 [INFO] HTTP Request: POST https://api.anthropic.com/v1/messages "HTTP/1.1 200 OK"
+2026-02-05 17:51:46,379 [INFO] Claude API extrajo: CIF=ESA28346245
+2026-02-05 17:51:46,379 [INFO] Claude API extrajo correctamente de 222260130678482-N002.PDF
+2026-02-05 17:51:46,379 [WARNING] NO_MATCH: No se encontró proveedor para CIF ESA28346245 en 222260130678482-N002.PDF
+2026-02-05 17:51:46,538 [INFO] Usando Claude API para F26-10463.pdf
+2026-02-05 17:51:47,543 [INFO] Llamando a Claude API para F26-10463.pdf
+2026-02-05 17:51:50,100 [INFO] HTTP Request: POST https://api.anthropic.com/v1/messages "HTTP/1.1 200 OK"
+2026-02-05 17:51:50,101 [INFO] Claude API extrajo: CIF=F43389675
+2026-02-05 17:51:50,101 [INFO] Claude API extrajo correctamente de F26-10463.pdf
+2026-02-05 17:51:50,210 [INFO] Usando Claude API para F26-14919.pdf
+2026-02-05 17:51:50,829 [INFO] Llamando a Claude API para F26-14919.pdf
+2026-02-05 17:51:53,387 [INFO] HTTP Request: POST https://api.anthropic.com/v1/messages "HTTP/1.1 200 OK"
+2026-02-05 17:51:53,393 [INFO] Claude API extrajo: CIF=F43389675
+2026-02-05 17:51:53,393 [INFO] Claude API extrajo correctamente de F26-14919.pdf
+2026-02-05 17:51:53,479 [INFO] Usando Claude API para F26-16794.pdf
+2026-02-05 17:51:53,807 [INFO] Llamando a Claude API para F26-16794.pdf
+2026-02-05 17:51:55,264 [INFO] HTTP Request: POST https://api.anthropic.com/v1/messages "HTTP/1.1 200 OK"
+2026-02-05 17:51:55,271 [INFO] Claude API extrajo: CIF=F43389675
+2026-02-05 17:51:55,271 [INFO] Claude API extrajo correctamente de F26-16794.pdf
+2026-02-05 17:51:55,371 [INFO] Usando Claude API para Factura 26000149.pdf
+2026-02-05 17:51:55,651 [INFO] Llamando a Claude API para Factura 26000149.pdf
+2026-02-05 17:51:56,914 [INFO] HTTP Request: POST https://api.anthropic.com/v1/messages "HTTP/1.1 200 OK"
+2026-02-05 17:51:56,914 [INFO] Claude API extrajo: CIF=A283466245
+2026-02-05 17:51:56,914 [INFO] Claude API extrajo correctamente de Factura 26000149.pdf
+2026-02-05 17:51:56,917 [WARNING] NO_MATCH: No se encontró proveedor para CIF A283466245 en Factura 26000149.pdf
+2026-02-05 17:51:57,012 [INFO] Usando Claude API para Factura de clientes_261001136_20260128_081434.pdf
+2026-02-05 17:51:57,223 [INFO] Llamando a Claude API para Factura de clientes_261001136_20260128_081434.pdf
+2026-02-05 17:51:58,450 [INFO] HTTP Request: POST https://api.anthropic.com/v1/messages "HTTP/1.1 200 OK"
+2026-02-05 17:51:58,451 [INFO] Claude API extrajo: CIF=ESA28346245
+2026-02-05 17:51:58,451 [INFO] Claude API extrajo correctamente de Factura de clientes_261001136_20260128_081434.pdf
+2026-02-05 17:51:58,451 [WARNING] NO_MATCH: No se encontró proveedor para CIF ESA28346245 en Factura de clientes_261001136_20260128_081434.pdf
+2026-02-05 17:51:58,534 [INFO] Usando Claude API para Factura STIGA SPA - 1240051381.pdf
+2026-02-05 17:51:58,755 [INFO] Llamando a Claude API para Factura STIGA SPA - 1240051381.pdf
+2026-02-05 17:52:00,245 [INFO] HTTP Request: POST https://api.anthropic.com/v1/messages "HTTP/1.1 200 OK"
+2026-02-05 17:52:00,247 [INFO] Claude API extrajo: CIF=ESA28346245
+2026-02-05 17:52:00,247 [INFO] Claude API extrajo correctamente de Factura STIGA SPA - 1240051381.pdf
+2026-02-05 17:52:00,248 [WARNING] NO_MATCH: No se encontró proveedor para CIF ESA28346245 en Factura STIGA SPA - 1240051381.pdf
+2026-02-05 17:52:00,329 [INFO] Usando Claude API para Factura venta VE 260197.pdf
+2026-02-05 17:52:00,537 [INFO] Llamando a Claude API para Factura venta VE 260197.pdf
+2026-02-05 17:52:01,928 [INFO] HTTP Request: POST https://api.anthropic.com/v1/messages "HTTP/1.1 200 OK"
+2026-02-05 17:52:01,932 [INFO] Claude API extrajo: CIF=A28346245
+2026-02-05 17:52:01,932 [INFO] Claude API extrajo correctamente de Factura venta VE 260197.pdf
+2026-02-05 17:52:01,932 [WARNING] NO_MATCH: No se encontró proveedor para CIF A28346245 en Factura venta VE 260197.pdf
+2026-02-05 17:52:02,030 [INFO] Usando Claude API para Factura_1_260435.pdf
+2026-02-05 17:52:02,314 [INFO] Llamando a Claude API para Factura_1_260435.pdf
+2026-02-05 17:52:03,636 [INFO] HTTP Request: POST https://api.anthropic.com/v1/messages "HTTP/1.1 200 OK"
+2026-02-05 17:52:03,637 [INFO] Claude API extrajo: CIF=A28346245
+2026-02-05 17:52:03,637 [INFO] Claude API extrajo correctamente de Factura_1_260435.pdf
+2026-02-05 17:52:03,637 [WARNING] NO_MATCH: No se encontró proveedor para CIF A28346245 en Factura_1_260435.pdf
+2026-02-05 17:52:03,725 [INFO] Usando Claude API para Factura_5060628633_20260127.PDF
+2026-02-05 17:52:04,100 [INFO] Llamando a Claude API para Factura_5060628633_20260127.PDF
+2026-02-05 17:52:05,507 [INFO] HTTP Request: POST https://api.anthropic.com/v1/messages "HTTP/1.1 200 OK"
+2026-02-05 17:52:05,511 [INFO] Claude API extrajo: CIF=M36060651
+2026-02-05 17:52:05,512 [INFO] Claude API extrajo correctamente de Factura_5060628633_20260127.PDF
+2026-02-05 17:52:05,514 [WARNING] NO_MATCH: No se encontró proveedor para CIF M36060651 en Factura_5060628633_20260127.PDF
+2026-02-05 17:52:05,601 [INFO] Usando Claude API para Factura_5060628928_20260128.PDF
+2026-02-05 17:52:06,080 [INFO] Llamando a Claude API para Factura_5060628928_20260128.PDF
+2026-02-05 17:52:07,424 [INFO] HTTP Request: POST https://api.anthropic.com/v1/messages "HTTP/1.1 200 OK"
+2026-02-05 17:52:07,426 [INFO] Claude API extrajo: CIF=B84072032
+2026-02-05 17:52:07,426 [INFO] Claude API extrajo correctamente de Factura_5060628928_20260128.PDF
+2026-02-05 17:52:07,514 [INFO] Usando Claude API para Factura_5060628929_20260128.PDF
+2026-02-05 17:52:07,887 [INFO] Llamando a Claude API para Factura_5060628929_20260128.PDF
+2026-02-05 17:52:09,287 [INFO] HTTP Request: POST https://api.anthropic.com/v1/messages "HTTP/1.1 200 OK"
+2026-02-05 17:52:09,289 [INFO] Claude API extrajo: CIF=B84072032
+2026-02-05 17:52:09,289 [INFO] Claude API extrajo correctamente de Factura_5060628929_20260128.PDF
+2026-02-05 17:52:09,373 [INFO] Usando Claude API para Factura_5060628930_20260128.PDF
+2026-02-05 17:52:09,587 [INFO] Llamando a Claude API para Factura_5060628930_20260128.PDF
+2026-02-05 17:52:11,601 [INFO] HTTP Request: POST https://api.anthropic.com/v1/messages "HTTP/1.1 200 OK"
+2026-02-05 17:52:11,607 [INFO] Claude API extrajo: CIF=ESA28346245
+2026-02-05 17:52:11,607 [INFO] Claude API extrajo correctamente de Factura_5060628930_20260128.PDF
+2026-02-05 17:52:11,607 [WARNING] NO_MATCH: No se encontró proveedor para CIF ESA28346245 en Factura_5060628930_20260128.PDF
+2026-02-05 17:52:11,701 [INFO] Usando Claude API para Factura_5060629312_20260129.PDF
+2026-02-05 17:52:11,961 [INFO] Llamando a Claude API para Factura_5060629312_20260129.PDF
+2026-02-05 17:52:13,587 [INFO] HTTP Request: POST https://api.anthropic.com/v1/messages "HTTP/1.1 200 OK"
+2026-02-05 17:52:13,588 [INFO] Claude API extrajo: CIF=M86016551
+2026-02-05 17:52:13,588 [INFO] Claude API extrajo correctamente de Factura_5060629312_20260129.PDF
+2026-02-05 17:52:13,589 [WARNING] NO_MATCH: No se encontró proveedor para CIF M86016551 en Factura_5060629312_20260129.PDF
+2026-02-05 17:52:13,721 [INFO] Usando Claude API para Factura_5060629313_20260129.PDF
+2026-02-05 17:52:14,311 [INFO] Llamando a Claude API para Factura_5060629313_20260129.PDF
+2026-02-05 17:52:15,837 [INFO] HTTP Request: POST https://api.anthropic.com/v1/messages "HTTP/1.1 200 OK"
+2026-02-05 17:52:15,837 [INFO] Claude API extrajo: CIF=B84072032
+2026-02-05 17:52:15,837 [INFO] Claude API extrajo correctamente de Factura_5060629313_20260129.PDF
+2026-02-05 17:52:15,951 [INFO] Usando Claude API para Factura_5060629745_20260130.PDF
+2026-02-05 17:52:16,257 [INFO] Llamando a Claude API para Factura_5060629745_20260130.PDF
+2026-02-05 17:52:16,523 [INFO] HTTP Request: POST https://api.anthropic.com/v1/messages "HTTP/1.1 429 Too Many Requests"
+2026-02-05 17:52:16,523 [INFO] Retrying request to /v1/messages in 47.000000 seconds
+2026-02-05 17:53:05,317 [INFO] HTTP Request: POST https://api.anthropic.com/v1/messages "HTTP/1.1 200 OK"
+2026-02-05 17:53:05,320 [INFO] Claude API extrajo: CIF=M36066I
+2026-02-05 17:53:05,320 [INFO] Claude API extrajo correctamente de Factura_5060629745_20260130.PDF
+2026-02-05 17:53:05,321 [WARNING] NO_MATCH: No se encontró proveedor para CIF M36066I en Factura_5060629745_20260130.PDF
+2026-02-05 17:53:05,423 [INFO] Usando Claude API para Factura_5060630302_20260131.PDF
+2026-02-05 17:53:05,642 [INFO] Llamando a Claude API para Factura_5060630302_20260131.PDF
+2026-02-05 17:53:08,001 [INFO] HTTP Request: POST https://api.anthropic.com/v1/messages "HTTP/1.1 200 OK"
+2026-02-05 17:53:08,003 [INFO] Claude API extrajo: CIF=M360661
+2026-02-05 17:53:08,003 [INFO] Claude API extrajo correctamente de Factura_5060630302_20260131.PDF
+2026-02-05 17:53:08,003 [WARNING] NO_MATCH: No se encontró proveedor para CIF M360661 en Factura_5060630302_20260131.PDF
+2026-02-05 17:53:08,085 [INFO] Usando Claude API para Factura_5060630303_20260131.PDF
+2026-02-05 17:53:08,293 [INFO] Llamando a Claude API para Factura_5060630303_20260131.PDF
+2026-02-05 17:53:09,669 [INFO] HTTP Request: POST https://api.anthropic.com/v1/messages "HTTP/1.1 200 OK"
+2026-02-05 17:53:09,670 [INFO] Claude API extrajo: CIF=B84072032
+2026-02-05 17:53:09,670 [INFO] Claude API extrajo correctamente de Factura_5060630303_20260131.PDF
+2026-02-05 17:53:09,754 [INFO] Usando Claude API para Factura_ESB41956970_202620665.pdf
+2026-02-05 17:53:09,973 [INFO] Llamando a Claude API para Factura_ESB41956970_202620665.pdf
+2026-02-05 17:53:11,179 [INFO] HTTP Request: POST https://api.anthropic.com/v1/messages "HTTP/1.1 200 OK"
+2026-02-05 17:53:11,180 [INFO] Claude API extrajo: CIF=B41956970
+2026-02-05 17:53:11,180 [INFO] Claude API extrajo correctamente de Factura_ESB41956970_202620665.pdf
+2026-02-05 17:53:11,271 [INFO] Usando Claude API para FM-014122.pdf
+2026-02-05 17:53:11,531 [INFO] Llamando a Claude API para FM-014122.pdf
+2026-02-05 17:53:13,229 [INFO] HTTP Request: POST https://api.anthropic.com/v1/messages "HTTP/1.1 200 OK"
+2026-02-05 17:53:13,229 [INFO] Claude API extrajo: CIF=A08607913
+2026-02-05 17:53:13,229 [INFO] Claude API extrajo correctamente de FM-014122.pdf
+2026-02-05 17:53:13,353 [INFO] Usando Claude API para FV1002260117076_290126.pdf
+2026-02-05 17:53:13,573 [INFO] Llamando a Claude API para FV1002260117076_290126.pdf
+2026-02-05 17:53:14,907 [INFO] HTTP Request: POST https://api.anthropic.com/v1/messages "HTTP/1.1 200 OK"
+2026-02-05 17:53:14,911 [INFO] Claude API extrajo: CIF=ESA28346245
+2026-02-05 17:53:14,911 [INFO] Claude API extrajo correctamente de FV1002260117076_290126.pdf
+2026-02-05 17:53:14,911 [WARNING] NO_MATCH: No se encontró proveedor para CIF ESA28346245 en FV1002260117076_290126.pdf
+2026-02-05 17:53:15,004 [INFO] Usando Claude API para FVA26-1381.pdf
+2026-02-05 17:53:15,355 [INFO] Llamando a Claude API para FVA26-1381.pdf
+2026-02-05 17:53:16,643 [INFO] HTTP Request: POST https://api.anthropic.com/v1/messages "HTTP/1.1 200 OK"
+2026-02-05 17:53:16,646 [INFO] Claude API extrajo: CIF=F43389675
+2026-02-05 17:53:16,647 [INFO] Claude API extrajo correctamente de FVA26-1381.pdf
+2026-02-05 17:53:16,737 [INFO] Usando Claude API para FVA26-906.pdf
+2026-02-05 17:53:17,011 [INFO] Llamando a Claude API para FVA26-906.pdf
+2026-02-05 17:53:18,323 [INFO] HTTP Request: POST https://api.anthropic.com/v1/messages "HTTP/1.1 200 OK"
+2026-02-05 17:53:18,327 [INFO] Claude API extrajo: CIF=F43389675
+2026-02-05 17:53:18,327 [INFO] Claude API extrajo correctamente de FVA26-906.pdf
+2026-02-05 17:53:18,429 [INFO] Usando Claude API para ILAB5C71.pdf
+2026-02-05 17:53:18,655 [INFO] Llamando a Claude API para ILAB5C71.pdf
+2026-02-05 17:53:20,480 [INFO] HTTP Request: POST https://api.anthropic.com/v1/messages "HTTP/1.1 200 OK"
+2026-02-05 17:53:20,480 [INFO] Claude API extrajo: CIF=A28346245
+2026-02-05 17:53:20,486 [INFO] Claude API extrajo correctamente de ILAB5C71.pdf
+2026-02-05 17:53:20,487 [WARNING] NO_MATCH: No se encontró proveedor para CIF A28346245 en ILAB5C71.pdf
+2026-02-05 17:53:20,573 [INFO] Usando Claude API para ILAE25A.pdf
+2026-02-05 17:53:21,001 [INFO] Llamando a Claude API para ILAE25A.pdf
+2026-02-05 17:53:22,474 [INFO] HTTP Request: POST https://api.anthropic.com/v1/messages "HTTP/1.1 200 OK"
+2026-02-05 17:53:22,474 [INFO] Claude API extrajo: CIF=A43009695
+2026-02-05 17:53:22,474 [INFO] Claude API extrajo correctamente de ILAE25A.pdf
+2026-02-05 17:53:22,570 [INFO] Usando Claude API para inv-6830047093.pdf
+2026-02-05 17:53:22,961 [INFO] Llamando a Claude API para inv-6830047093.pdf
+2026-02-05 17:53:24,378 [INFO] HTTP Request: POST https://api.anthropic.com/v1/messages "HTTP/1.1 200 OK"
+2026-02-05 17:53:24,378 [INFO] Claude API extrajo: CIF=ESA28346245
+2026-02-05 17:53:24,378 [INFO] Claude API extrajo correctamente de inv-6830047093.pdf
+2026-02-05 17:53:24,378 [WARNING] NO_MATCH: No se encontró proveedor para CIF ESA28346245 en inv-6830047093.pdf
+2026-02-05 17:53:24,479 [INFO] Usando Claude API para P2 Kärcher su factura núm. 1531731878.pdf
+2026-02-05 17:53:24,679 [INFO] Llamando a Claude API para P2 Kärcher su factura núm. 1531731878.pdf
+2026-02-05 17:53:25,937 [INFO] HTTP Request: POST https://api.anthropic.com/v1/messages "HTTP/1.1 200 OK"
+2026-02-05 17:53:25,937 [INFO] Claude API extrajo: CIF=ESA28346245
+2026-02-05 17:53:25,937 [INFO] Claude API extrajo correctamente de P2 Kärcher su factura núm. 1531731878.pdf
+2026-02-05 17:53:25,942 [WARNING] NO_MATCH: No se encontró proveedor para CIF ESA28346245 en P2 Kärcher su factura núm. 1531731878.pdf
+2026-02-05 17:53:26,040 [INFO] Usando Claude API para P2426 VF2505695.pdf
+2026-02-05 17:53:26,264 [INFO] Llamando a Claude API para P2426 VF2505695.pdf
+2026-02-05 17:53:27,561 [INFO] HTTP Request: POST https://api.anthropic.com/v1/messages "HTTP/1.1 200 OK"
+2026-02-05 17:53:27,561 [INFO] Claude API extrajo: CIF=A28346245
+2026-02-05 17:53:27,561 [INFO] Claude API extrajo correctamente de P2426 VF2505695.pdf
+2026-02-05 17:53:27,564 [WARNING] NO_MATCH: No se encontró proveedor para CIF A28346245 en P2426 VF2505695.pdf
+2026-02-05 17:53:27,652 [INFO] Usando Claude API para P2434 Kärcher su factura núm. 1531729480.pdf
+2026-02-05 17:53:27,933 [INFO] Llamando a Claude API para P2434 Kärcher su factura núm. 1531729480.pdf
+2026-02-05 17:53:29,223 [INFO] HTTP Request: POST https://api.anthropic.com/v1/messages "HTTP/1.1 200 OK"
+2026-02-05 17:53:29,224 [INFO] Claude API extrajo: CIF=ESA28346245
+2026-02-05 17:53:29,224 [INFO] Claude API extrajo correctamente de P2434 Kärcher su factura núm. 1531729480.pdf
+2026-02-05 17:53:29,224 [WARNING] NO_MATCH: No se encontró proveedor para CIF ESA28346245 en P2434 Kärcher su factura núm. 1531729480.pdf
+2026-02-05 17:53:29,323 [INFO] Usando Claude API para P54_0916290447.pdf
+2026-02-05 17:53:29,873 [INFO] Llamando a Claude API para P54_0916290447.pdf
+2026-02-05 17:53:31,511 [INFO] HTTP Request: POST https://api.anthropic.com/v1/messages "HTTP/1.1 200 OK"
+2026-02-05 17:53:31,511 [INFO] Claude API extrajo: CIF=ESA28346245
+2026-02-05 17:53:31,511 [INFO] Claude API extrajo correctamente de P54_0916290447.pdf
+2026-02-05 17:53:31,511 [WARNING] NO_MATCH: No se encontró proveedor para CIF ESA28346245 en P54_0916290447.pdf
+2026-02-05 17:53:31,598 [INFO] Usando Claude API para P55_3026102099.PDF
+2026-02-05 17:53:31,807 [INFO] Llamando a Claude API para P55_3026102099.PDF
+2026-02-05 17:53:32,998 [INFO] HTTP Request: POST https://api.anthropic.com/v1/messages "HTTP/1.1 200 OK"
+2026-02-05 17:53:33,003 [INFO] Claude API extrajo: CIF=A28346245
+2026-02-05 17:53:33,003 [INFO] Claude API extrajo correctamente de P55_3026102099.PDF
+2026-02-05 17:53:33,006 [WARNING] NO_MATCH: No se encontró proveedor para CIF A28346245 en P55_3026102099.PDF
+2026-02-05 17:53:33,093 [INFO] Usando Claude API para P56_Factura_5060626424_20260121.PDF
+2026-02-05 17:53:33,301 [INFO] Llamando a Claude API para P56_Factura_5060626424_20260121.PDF
+2026-02-05 17:53:34,648 [INFO] HTTP Request: POST https://api.anthropic.com/v1/messages "HTTP/1.1 200 OK"
+2026-02-05 17:53:34,650 [INFO] Claude API extrajo: CIF=B84072032
+2026-02-05 17:53:34,650 [INFO] Claude API extrajo correctamente de P56_Factura_5060626424_20260121.PDF
+2026-02-05 17:53:34,909 [INFO] Usando Claude API para P59_0916298016.pdf
+2026-02-05 17:53:35,344 [INFO] Llamando a Claude API para P59_0916298016.pdf
+2026-02-05 17:53:37,193 [INFO] HTTP Request: POST https://api.anthropic.com/v1/messages "HTTP/1.1 200 OK"
+2026-02-05 17:53:37,195 [INFO] Claude API extrajo: CIF=A28940740
+2026-02-05 17:53:37,195 [INFO] Claude API extrajo correctamente de P59_0916298016.pdf
+2026-02-05 17:53:37,289 [INFO] Usando Claude API para P60_Factura_5060626894_20260122.PDF
+2026-02-05 17:53:37,519 [INFO] Llamando a Claude API para P60_Factura_5060626894_20260122.PDF
+2026-02-05 17:53:38,811 [INFO] HTTP Request: POST https://api.anthropic.com/v1/messages "HTTP/1.1 200 OK"
+2026-02-05 17:53:38,811 [INFO] Claude API extrajo: CIF=M86066
+2026-02-05 17:53:38,811 [INFO] Claude API extrajo correctamente de P60_Factura_5060626894_20260122.PDF
+2026-02-05 17:53:38,814 [WARNING] NO_MATCH: No se encontró proveedor para CIF M86066 en P60_Factura_5060626894_20260122.PDF
+2026-02-05 17:53:38,904 [INFO] Usando Claude API para P63_Kärcher su factura núm. 1580275219.pdf
+2026-02-05 17:53:39,182 [INFO] Llamando a Claude API para P63_Kärcher su factura núm. 1580275219.pdf
+2026-02-05 17:53:41,679 [INFO] HTTP Request: POST https://api.anthropic.com/v1/messages "HTTP/1.1 200 OK"
+2026-02-05 17:53:41,679 [INFO] Claude API extrajo: CIF=ESA28346245
+2026-02-05 17:53:41,679 [INFO] Claude API extrajo correctamente de P63_Kärcher su factura núm. 1580275219.pdf
+2026-02-05 17:53:41,686 [WARNING] NO_MATCH: No se encontró proveedor para CIF ESA28346245 en P63_Kärcher su factura núm. 1580275219.pdf
+2026-02-05 17:53:41,774 [INFO] Usando Claude API para P64_Kärcher su factura núm. 1531735795.pdf
+2026-02-05 17:53:41,986 [INFO] Llamando a Claude API para P64_Kärcher su factura núm. 1531735795.pdf
+2026-02-05 17:53:44,108 [INFO] HTTP Request: POST https://api.anthropic.com/v1/messages "HTTP/1.1 200 OK"
+2026-02-05 17:53:44,110 [INFO] Claude API extrajo: CIF=ESA28346245
+2026-02-05 17:53:44,110 [INFO] Claude API extrajo correctamente de P64_Kärcher su factura núm. 1531735795.pdf
+2026-02-05 17:53:44,111 [WARNING] NO_MATCH: No se encontró proveedor para CIF ESA28346245 en P64_Kärcher su factura núm. 1531735795.pdf
+2026-02-05 17:53:44,196 [INFO] Usando Claude API para P65_Kärcher su factura núm. 1580275395.pdf
+2026-02-05 17:53:44,408 [INFO] Llamando a Claude API para P65_Kärcher su factura núm. 1580275395.pdf
+2026-02-05 17:53:45,752 [INFO] HTTP Request: POST https://api.anthropic.com/v1/messages "HTTP/1.1 200 OK"
+2026-02-05 17:53:45,752 [INFO] Claude API extrajo: CIF=ESA28346245
+2026-02-05 17:53:45,755 [INFO] Claude API extrajo correctamente de P65_Kärcher su factura núm. 1580275395.pdf
+2026-02-05 17:53:45,756 [WARNING] NO_MATCH: No se encontró proveedor para CIF ESA28346245 en P65_Kärcher su factura núm. 1580275395.pdf
+2026-02-05 17:53:45,843 [INFO] Usando Claude API para P67_Factura 9814032906.pdf
+2026-02-05 17:53:46,191 [INFO] Llamando a Claude API para P67_Factura 9814032906.pdf
+2026-02-05 17:53:47,521 [INFO] HTTP Request: POST https://api.anthropic.com/v1/messages "HTTP/1.1 200 OK"
+2026-02-05 17:53:47,522 [INFO] Claude API extrajo: CIF=ESA28346245
+2026-02-05 17:53:47,522 [INFO] Claude API extrajo correctamente de P67_Factura 9814032906.pdf
+2026-02-05 17:53:47,523 [WARNING] NO_MATCH: No se encontró proveedor para CIF ESA28346245 en P67_Factura 9814032906.pdf
+2026-02-05 17:53:47,618 [INFO] Usando Claude API para P69_Factura_5060627634_20260123.PDF
+2026-02-05 17:53:47,831 [INFO] Llamando a Claude API para P69_Factura_5060627634_20260123.PDF
+2026-02-05 17:53:49,079 [INFO] HTTP Request: POST https://api.anthropic.com/v1/messages "HTTP/1.1 200 OK"
+2026-02-05 17:53:49,079 [INFO] Claude API extrajo: CIF=ESA28346245
+2026-02-05 17:53:49,079 [INFO] Claude API extrajo correctamente de P69_Factura_5060627634_20260123.PDF
+2026-02-05 17:53:49,079 [WARNING] NO_MATCH: No se encontró proveedor para CIF ESA28346245 en P69_Factura_5060627634_20260123.PDF
+2026-02-05 17:53:49,186 [INFO] Usando Claude API para proteccion_datosf.PDF
+2026-02-05 17:53:49,401 [INFO] Llamando a Claude API para proteccion_datosf.PDF
+2026-02-05 17:53:50,493 [INFO] HTTP Request: POST https://api.anthropic.com/v1/messages "HTTP/1.1 200 OK"
+2026-02-05 17:53:50,493 [INFO] Claude API extrajo: CIF=A08052243
+2026-02-05 17:53:50,495 [INFO] Claude API extrajo correctamente de proteccion_datosf.PDF
+2026-02-05 17:53:50,606 [INFO] Usando Claude API para VA2600020.pdf
+2026-02-05 17:53:50,815 [INFO] Llamando a Claude API para VA2600020.pdf
+2026-02-05 17:53:52,329 [INFO] HTTP Request: POST https://api.anthropic.com/v1/messages "HTTP/1.1 200 OK"
+2026-02-05 17:53:52,329 [INFO] Claude API extrajo: CIF=A28346245
+2026-02-05 17:53:52,329 [INFO] Claude API extrajo correctamente de VA2600020.pdf
+2026-02-05 17:53:52,329 [WARNING] NO_MATCH: No se encontró proveedor para CIF A28346245 en VA2600020.pdf
+2026-02-05 17:54:57,577 [INFO] Maestro cargado: 469 proveedores.
+2026-02-05 17:54:59,232 [INFO] Claude API configurada correctamente
+2026-02-05 17:54:59,247 [INFO] Analizando 14 archivos en X:\Facts_Proveedor
+2026-02-05 17:54:59,343 [INFO] Usando Claude API para 0916325990.pdf
+2026-02-05 17:54:59,770 [INFO] Llamando a Claude API para 0916325990.pdf
+2026-02-05 17:55:01,348 [INFO] HTTP Request: POST https://api.anthropic.com/v1/messages "HTTP/1.1 200 OK"
+2026-02-05 17:55:01,357 [INFO] Claude API extrajo: CIF=A28940740
+2026-02-05 17:55:01,357 [INFO] Claude API extrajo correctamente de 0916325990.pdf
+2026-02-05 17:55:01,480 [INFO] Usando Claude API para 0916325991.pdf
+2026-02-05 17:55:02,058 [INFO] Llamando a Claude API para 0916325991.pdf
+2026-02-05 17:55:03,571 [INFO] HTTP Request: POST https://api.anthropic.com/v1/messages "HTTP/1.1 200 OK"
+2026-02-05 17:55:03,572 [INFO] Claude API extrajo: CIF=ESA28346245
+2026-02-05 17:55:03,573 [INFO] Claude API extrajo correctamente de 0916325991.pdf
+2026-02-05 17:55:03,575 [WARNING] NO_MATCH: No se encontró proveedor para CIF ESA28346245 en 0916325991.pdf
+2026-02-05 17:55:03,661 [INFO] Usando Claude API para 0916325993.pdf
+2026-02-05 17:55:04,015 [INFO] Llamando a Claude API para 0916325993.pdf
+2026-02-05 17:55:05,257 [INFO] HTTP Request: POST https://api.anthropic.com/v1/messages "HTTP/1.1 200 OK"
+2026-02-05 17:55:05,258 [INFO] Claude API extrajo: CIF=ESA28346245
+2026-02-05 17:55:05,258 [INFO] Claude API extrajo correctamente de 0916325993.pdf
+2026-02-05 17:55:05,259 [WARNING] NO_MATCH: No se encontró proveedor para CIF ESA28346245 en 0916325993.pdf
+2026-02-05 17:55:05,343 [INFO] Usando Claude API para 0916333360.pdf
+2026-02-05 17:55:05,707 [INFO] Llamando a Claude API para 0916333360.pdf
+2026-02-05 17:55:07,148 [INFO] HTTP Request: POST https://api.anthropic.com/v1/messages "HTTP/1.1 200 OK"
+2026-02-05 17:55:07,156 [INFO] Claude API extrajo: CIF=A28940740
+2026-02-05 17:55:07,156 [INFO] Claude API extrajo correctamente de 0916333360.pdf
+2026-02-05 17:55:07,281 [INFO] Usando Claude API para 0916333361.pdf
+2026-02-05 17:55:07,887 [INFO] Llamando a Claude API para 0916333361.pdf
+2026-02-05 17:55:09,301 [INFO] HTTP Request: POST https://api.anthropic.com/v1/messages "HTTP/1.1 200 OK"
+2026-02-05 17:55:09,301 [INFO] Claude API extrajo: CIF=ESA28346245
+2026-02-05 17:55:09,301 [INFO] Claude API extrajo correctamente de 0916333361.pdf
+2026-02-05 17:55:09,307 [WARNING] NO_MATCH: No se encontró proveedor para CIF ESA28346245 en 0916333361.pdf
+2026-02-05 17:55:09,407 [INFO] Usando Claude API para 222260125676011-N002.PDF
+2026-02-05 17:55:09,935 [INFO] Llamando a Claude API para 222260125676011-N002.PDF
+2026-02-05 17:55:11,489 [INFO] HTTP Request: POST https://api.anthropic.com/v1/messages "HTTP/1.1 200 OK"
+2026-02-05 17:55:11,491 [INFO] Claude API extrajo: CIF=ESA06050930
+2026-02-05 17:55:11,491 [INFO] Claude API extrajo correctamente de 222260125676011-N002.PDF
+2026-02-05 17:55:11,493 [WARNING] NO_MATCH: No se encontró proveedor para CIF ESA06050930 en 222260125676011-N002.PDF
+2026-02-05 17:55:11,584 [INFO] Usando Claude API para Factura de clientes_261001136_20260128_081434.pdf
+2026-02-05 17:55:11,795 [INFO] Llamando a Claude API para Factura de clientes_261001136_20260128_081434.pdf
+2026-02-05 17:55:13,056 [INFO] HTTP Request: POST https://api.anthropic.com/v1/messages "HTTP/1.1 200 OK"
+2026-02-05 17:55:13,057 [INFO] Claude API extrajo: CIF=ESA28346245
+2026-02-05 17:55:13,057 [INFO] Claude API extrajo correctamente de Factura de clientes_261001136_20260128_081434.pdf
+2026-02-05 17:55:13,059 [WARNING] NO_MATCH: No se encontró proveedor para CIF ESA28346245 en Factura de clientes_261001136_20260128_081434.pdf
+2026-02-05 17:55:13,145 [INFO] Usando Claude API para Factura venta VE 260197.pdf
+2026-02-05 17:55:13,421 [INFO] Llamando a Claude API para Factura venta VE 260197.pdf
+2026-02-05 17:55:14,610 [INFO] HTTP Request: POST https://api.anthropic.com/v1/messages "HTTP/1.1 200 OK"
+2026-02-05 17:55:14,610 [INFO] Claude API extrajo: CIF=A28346245
+2026-02-05 17:55:14,611 [INFO] Claude API extrajo correctamente de Factura venta VE 260197.pdf
+2026-02-05 17:55:14,613 [WARNING] NO_MATCH: No se encontró proveedor para CIF A28346245 en Factura venta VE 260197.pdf
+2026-02-05 17:55:14,705 [INFO] Usando Claude API para Factura_5060628928_20260128.PDF
+2026-02-05 17:55:15,073 [INFO] Llamando a Claude API para Factura_5060628928_20260128.PDF
+2026-02-05 17:55:16,451 [INFO] HTTP Request: POST https://api.anthropic.com/v1/messages "HTTP/1.1 200 OK"
+2026-02-05 17:55:16,451 [ERROR] Error en Claude API para X:\Facts_Proveedor\Factura_5060628928_20260128.PDF: Expecting property name enclosed in double quotes: line 5 column 25 (char 132)
+2026-02-05 17:55:16,457 [WARNING] Claude API no pudo extraer datos de Factura_5060628928_20260128.PDF
+2026-02-05 17:55:16,460 [WARNING] NO_MATCH: No se encontró proveedor para CIF N50606289 en Factura_5060628928_20260128.PDF
+2026-02-05 17:55:16,550 [INFO] Usando Claude API para Factura_5060628929_20260128.PDF
+2026-02-05 17:55:16,905 [INFO] Llamando a Claude API para Factura_5060628929_20260128.PDF
+2026-02-05 17:55:18,179 [INFO] HTTP Request: POST https://api.anthropic.com/v1/messages "HTTP/1.1 200 OK"
+2026-02-05 17:55:18,179 [INFO] Claude API extrajo: CIF=M36606651
+2026-02-05 17:55:18,179 [INFO] Claude API extrajo correctamente de Factura_5060628929_20260128.PDF
+2026-02-05 17:55:18,179 [WARNING] NO_MATCH: No se encontró proveedor para CIF M36606651 en Factura_5060628929_20260128.PDF
+2026-02-05 17:55:18,275 [INFO] Usando Claude API para Factura_5060628930_20260128.PDF
+2026-02-05 17:55:18,486 [INFO] Llamando a Claude API para Factura_5060628930_20260128.PDF
+2026-02-05 17:55:19,673 [INFO] HTTP Request: POST https://api.anthropic.com/v1/messages "HTTP/1.1 200 OK"
+2026-02-05 17:55:19,673 [INFO] Claude API extrajo: CIF=B84072032
+2026-02-05 17:55:19,673 [INFO] Claude API extrajo correctamente de Factura_5060628930_20260128.PDF
+2026-02-05 17:55:19,776 [INFO] Usando Claude API para Factura_5060629312_20260129.PDF
+2026-02-05 17:55:19,993 [INFO] Llamando a Claude API para Factura_5060629312_20260129.PDF
+2026-02-05 17:55:21,222 [INFO] HTTP Request: POST https://api.anthropic.com/v1/messages "HTTP/1.1 200 OK"
+2026-02-05 17:55:21,223 [INFO] Claude API extrajo: CIF=B88027032
+2026-02-05 17:55:21,224 [INFO] Claude API extrajo correctamente de Factura_5060629312_20260129.PDF
+2026-02-05 17:55:21,225 [WARNING] NO_MATCH: No se encontró proveedor para CIF B88027032 en Factura_5060629312_20260129.PDF
+2026-02-05 17:55:21,353 [INFO] Usando Claude API para Factura_5060629313_20260129.PDF
+2026-02-05 17:55:21,929 [INFO] Llamando a Claude API para Factura_5060629313_20260129.PDF
+2026-02-05 17:55:23,876 [INFO] HTTP Request: POST https://api.anthropic.com/v1/messages "HTTP/1.1 200 OK"
+2026-02-05 17:55:23,878 [INFO] Claude API extrajo: CIF=M-366651
+2026-02-05 17:55:23,879 [INFO] Claude API extrajo correctamente de Factura_5060629313_20260129.PDF
+2026-02-05 17:55:23,881 [WARNING] NO_MATCH: No se encontró proveedor para CIF M-366651 en Factura_5060629313_20260129.PDF
+2026-02-05 17:55:23,968 [INFO] Usando Claude API para FVA26-906.pdf
+2026-02-05 17:55:24,222 [INFO] Llamando a Claude API para FVA26-906.pdf
+2026-02-05 17:55:25,474 [INFO] HTTP Request: POST https://api.anthropic.com/v1/messages "HTTP/1.1 200 OK"
+2026-02-05 17:55:25,476 [INFO] Claude API extrajo: CIF=F43389675
+2026-02-05 17:55:25,477 [INFO] Claude API extrajo correctamente de FVA26-906.pdf
+2026-02-05 17:55:25,864 [INFO] Excel actualizado en: c:\Proyectos\Proveedores\Resumen_Facturas_IDP.xlsx
+2026-02-05 17:55:25,866 [INFO] Procesado finalizado. 14 registros nuevos/actualizados.
+2026-02-05 18:06:53,027 [INFO] Maestro cargado: 469 proveedores.
+2026-02-05 18:06:54,633 [INFO] Claude API configurada correctamente
+2026-02-05 18:06:54,681 [INFO] Analizando 14 archivos en X:\Facts_Proveedor
+2026-02-05 18:06:54,772 [INFO] Usando Claude API para 0916325990.pdf
+2026-02-05 18:06:55,218 [INFO] Llamando a Claude API para 0916325990.pdf
+2026-02-05 18:06:56,679 [INFO] HTTP Request: POST https://api.anthropic.com/v1/messages "HTTP/1.1 200 OK"
+2026-02-05 18:06:56,691 [INFO] Claude API extrajo: CIF=A28940740
+2026-02-05 18:06:56,691 [INFO] Claude API extrajo correctamente de 0916325990.pdf
+2026-02-05 18:06:56,811 [INFO] Usando Claude API para 0916325991.pdf
+2026-02-05 18:06:57,399 [INFO] Llamando a Claude API para 0916325991.pdf
+2026-02-05 18:06:58,910 [INFO] HTTP Request: POST https://api.anthropic.com/v1/messages "HTTP/1.1 200 OK"
+2026-02-05 18:06:58,911 [INFO] Claude API extrajo: CIF=A28940740
+2026-02-05 18:06:58,913 [INFO] Claude API extrajo correctamente de 0916325991.pdf
+2026-02-05 18:06:59,000 [INFO] Usando Claude API para 0916325993.pdf
+2026-02-05 18:06:59,427 [INFO] Llamando a Claude API para 0916325993.pdf
+2026-02-05 18:07:01,292 [INFO] HTTP Request: POST https://api.anthropic.com/v1/messages "HTTP/1.1 200 OK"
+2026-02-05 18:07:01,293 [INFO] Claude API extrajo: CIF=A28940740
+2026-02-05 18:07:01,293 [INFO] Claude API extrajo correctamente de 0916325993.pdf
+2026-02-05 18:07:01,381 [INFO] Usando Claude API para 0916333360.pdf
+2026-02-05 18:07:01,757 [INFO] Llamando a Claude API para 0916333360.pdf
+2026-02-05 18:07:03,123 [INFO] HTTP Request: POST https://api.anthropic.com/v1/messages "HTTP/1.1 200 OK"
+2026-02-05 18:07:03,123 [INFO] Claude API extrajo: CIF=A28940740
+2026-02-05 18:07:03,123 [INFO] Claude API extrajo correctamente de 0916333360.pdf
+2026-02-05 18:07:03,258 [INFO] Usando Claude API para 0916333361.pdf
+2026-02-05 18:07:03,887 [INFO] Llamando a Claude API para 0916333361.pdf
+2026-02-05 18:07:05,430 [INFO] HTTP Request: POST https://api.anthropic.com/v1/messages "HTTP/1.1 200 OK"
+2026-02-05 18:07:05,430 [INFO] Claude API extrajo: CIF=A28940740
+2026-02-05 18:07:05,432 [INFO] Claude API extrajo correctamente de 0916333361.pdf
+2026-02-05 18:07:05,524 [INFO] Usando Claude API para 222260125676011-N002.PDF
+2026-02-05 18:07:06,085 [INFO] Llamando a Claude API para 222260125676011-N002.PDF
+2026-02-05 18:07:07,487 [INFO] HTTP Request: POST https://api.anthropic.com/v1/messages "HTTP/1.1 200 OK"
+2026-02-05 18:07:07,487 [INFO] Claude API extrajo: CIF=ESA06050930
+2026-02-05 18:07:07,487 [INFO] Claude API extrajo correctamente de 222260125676011-N002.PDF
+2026-02-05 18:07:07,487 [WARNING] NO_MATCH: No se encontró proveedor para CIF ESA06050930 en 222260125676011-N002.PDF
+2026-02-05 18:07:07,582 [INFO] Usando Claude API para Factura de clientes_261001136_20260128_081434.pdf
+2026-02-05 18:07:07,805 [INFO] Llamando a Claude API para Factura de clientes_261001136_20260128_081434.pdf
+2026-02-05 18:07:09,216 [INFO] HTTP Request: POST https://api.anthropic.com/v1/messages "HTTP/1.1 200 OK"
+2026-02-05 18:07:09,219 [INFO] Claude API extrajo: CIF=ESA28576197
+2026-02-05 18:07:09,221 [INFO] Claude API extrajo correctamente de Factura de clientes_261001136_20260128_081434.pdf
+2026-02-05 18:07:09,221 [WARNING] NO_MATCH: No se encontró proveedor para CIF ESA28576197 en Factura de clientes_261001136_20260128_081434.pdf
+2026-02-05 18:07:09,314 [INFO] Usando Claude API para Factura venta VE 260197.pdf
+2026-02-05 18:07:09,523 [INFO] Llamando a Claude API para Factura venta VE 260197.pdf
+2026-02-05 18:07:10,737 [INFO] HTTP Request: POST https://api.anthropic.com/v1/messages "HTTP/1.1 200 OK"
+2026-02-05 18:07:10,737 [INFO] Claude API extrajo: CIF=B78530425
+2026-02-05 18:07:10,737 [INFO] Claude API extrajo correctamente de Factura venta VE 260197.pdf
+2026-02-05 18:07:10,834 [INFO] Usando Claude API para Factura_5060628928_20260128.PDF
+2026-02-05 18:07:11,229 [INFO] Llamando a Claude API para Factura_5060628928_20260128.PDF
+2026-02-05 18:07:12,567 [INFO] HTTP Request: POST https://api.anthropic.com/v1/messages "HTTP/1.1 200 OK"
+2026-02-05 18:07:12,567 [INFO] Claude API extrajo: CIF=B84072032
+2026-02-05 18:07:12,567 [INFO] Claude API extrajo correctamente de Factura_5060628928_20260128.PDF
+2026-02-05 18:07:12,702 [INFO] Usando Claude API para Factura_5060628929_20260128.PDF
+2026-02-05 18:07:13,073 [INFO] Llamando a Claude API para Factura_5060628929_20260128.PDF
+2026-02-05 18:07:14,657 [INFO] HTTP Request: POST https://api.anthropic.com/v1/messages "HTTP/1.1 200 OK"
+2026-02-05 18:07:14,657 [INFO] Claude API extrajo: CIF=B80072032
+2026-02-05 18:07:14,657 [INFO] Claude API extrajo correctamente de Factura_5060628929_20260128.PDF
+2026-02-05 18:07:14,657 [WARNING] NO_MATCH: No se encontró proveedor para CIF B80072032 en Factura_5060628929_20260128.PDF
+2026-02-05 18:07:14,748 [INFO] Usando Claude API para Factura_5060628930_20260128.PDF
+2026-02-05 18:07:15,077 [INFO] Llamando a Claude API para Factura_5060628930_20260128.PDF
+2026-02-05 18:07:16,387 [INFO] HTTP Request: POST https://api.anthropic.com/v1/messages "HTTP/1.1 200 OK"
+2026-02-05 18:07:16,387 [INFO] Claude API extrajo: CIF=B80072032
+2026-02-05 18:07:16,387 [INFO] Claude API extrajo correctamente de Factura_5060628930_20260128.PDF
+2026-02-05 18:07:16,393 [WARNING] NO_MATCH: No se encontró proveedor para CIF B80072032 en Factura_5060628930_20260128.PDF
+2026-02-05 18:07:16,475 [INFO] Usando Claude API para Factura_5060629312_20260129.PDF
+2026-02-05 18:07:16,700 [INFO] Llamando a Claude API para Factura_5060629312_20260129.PDF
+2026-02-05 18:07:17,923 [INFO] HTTP Request: POST https://api.anthropic.com/v1/messages "HTTP/1.1 200 OK"
+2026-02-05 18:07:17,923 [INFO] Claude API extrajo: CIF=B80072032
+2026-02-05 18:07:17,923 [INFO] Claude API extrajo correctamente de Factura_5060629312_20260129.PDF
+2026-02-05 18:07:17,923 [WARNING] NO_MATCH: No se encontró proveedor para CIF B80072032 en Factura_5060629312_20260129.PDF
+2026-02-05 18:07:18,052 [INFO] Usando Claude API para Factura_5060629313_20260129.PDF
+2026-02-05 18:07:18,657 [INFO] Llamando a Claude API para Factura_5060629313_20260129.PDF
+2026-02-05 18:07:20,102 [INFO] HTTP Request: POST https://api.anthropic.com/v1/messages "HTTP/1.1 200 OK"
+2026-02-05 18:07:20,102 [INFO] Claude API extrajo: CIF=M36066I
+2026-02-05 18:07:20,102 [INFO] Claude API extrajo correctamente de Factura_5060629313_20260129.PDF
+2026-02-05 18:07:20,107 [WARNING] NO_MATCH: No se encontró proveedor para CIF M36066I en Factura_5060629313_20260129.PDF
+2026-02-05 18:07:20,187 [INFO] Usando Claude API para FVA26-906.pdf
+2026-02-05 18:07:20,453 [INFO] Llamando a Claude API para FVA26-906.pdf
+2026-02-05 18:07:21,643 [INFO] HTTP Request: POST https://api.anthropic.com/v1/messages "HTTP/1.1 200 OK"
+2026-02-05 18:07:21,643 [INFO] Claude API extrajo: CIF=F43389675
+2026-02-05 18:07:21,643 [INFO] Claude API extrajo correctamente de FVA26-906.pdf
+2026-02-05 18:07:22,027 [INFO] Excel actualizado en: c:\Proyectos\Proveedores\Resumen_Facturas_IDP.xlsx
+2026-02-05 18:07:22,029 [INFO] Procesado finalizado. 14 registros nuevos/actualizados.
+2026-02-05 18:25:29,359 [INFO] Maestro cargado: 469 proveedores.
+2026-02-05 18:25:29,369 [WARNING] Claude API no disponible: No module named 'dotenv'
+2026-02-05 18:25:29,411 [INFO] Analizando 14 archivos en X:\Facts_Proveedor
+2026-02-05 18:25:29,598 [INFO] No hay cambios detectados desde la última ejecución.
+2026-02-05 18:30:34,311 [INFO] Maestro cargado: 469 proveedores.
+2026-02-05 18:30:34,327 [WARNING] Claude API no disponible: No module named 'dotenv'
+2026-02-05 18:30:34,370 [INFO] Analizando 14 archivos en X:\Facts_Proveedor
+2026-02-05 18:30:34,708 [INFO] Limpieza de Excel: Se eliminaron 54 filas obsoletas.
+2026-02-05 18:30:34,870 [INFO] No hay cambios detectados desde la última ejecución.
+2026-02-05 18:34:03,307 [INFO] Maestro cargado: 469 proveedores.
+2026-02-05 18:34:03,319 [WARNING] Claude API no disponible: No module named 'dotenv'
+2026-02-05 18:34:03,341 [INFO] Analizando 14 archivos en X:\Facts_Proveedor
+2026-02-05 18:34:03,814 [WARNING] NO_MATCH: No se encontró proveedor para CIF S6908174S en 222260125676011-N002.PDF
+2026-02-05 18:34:03,910 [WARNING] NO_MATCH: No se encontró proveedor para CIF A26100113 en Factura de clientes_261001136_20260128_081434.pdf
+2026-02-05 18:34:04,028 [WARNING] NO_MATCH: No se encontró proveedor para CIF N50606289 en Factura_5060628929_20260128.PDF
+2026-02-05 18:34:04,116 [WARNING] NO_MATCH: No se encontró proveedor para CIF N50606289 en Factura_5060628930_20260128.PDF
+2026-02-05 18:34:04,214 [WARNING] NO_MATCH: No se encontró proveedor para CIF N50606293 en Factura_5060629312_20260129.PDF
+2026-02-05 18:34:04,358 [WARNING] NO_MATCH: No se encontró proveedor para CIF N50606293 en Factura_5060629313_20260129.PDF
+2026-02-05 18:34:04,431 [INFO] Excel actualizado en: c:\Proyectos\Proveedores\Resumen_Facturas_IDP.xlsx
+2026-02-05 18:34:04,434 [INFO] Procesado finalizado. 6 registros nuevos/actualizados.
+2026-02-05 18:35:32,188 [INFO] Maestro cargado: 469 proveedores.
+2026-02-05 18:35:32,208 [WARNING] Claude API no disponible: No module named 'dotenv'
+2026-02-05 18:35:32,227 [INFO] Analizando 14 archivos en X:\Facts_Proveedor
+2026-02-05 18:35:32,414 [WARNING] NO_MATCH: No se encontró proveedor para CIF S6908174S en 222260125676011-N002.PDF
+2026-02-05 18:35:32,515 [WARNING] NO_MATCH: No se encontró proveedor para CIF A26100113 en Factura de clientes_261001136_20260128_081434.pdf
+2026-02-05 18:35:32,641 [WARNING] NO_MATCH: No se encontró proveedor para CIF N50606289 en Factura_5060628929_20260128.PDF
+2026-02-05 18:35:32,733 [WARNING] NO_MATCH: No se encontró proveedor para CIF N50606289 en Factura_5060628930_20260128.PDF
+2026-02-05 18:35:32,821 [WARNING] NO_MATCH: No se encontró proveedor para CIF N50606293 en Factura_5060629312_20260129.PDF
+2026-02-05 18:35:32,952 [WARNING] NO_MATCH: No se encontró proveedor para CIF N50606293 en Factura_5060629313_20260129.PDF
+2026-02-05 18:35:33,017 [INFO] Excel actualizado en: c:\Proyectos\Proveedores\Resumen_Facturas_IDP.xlsx
+2026-02-05 18:35:33,022 [INFO] Procesado finalizado. 6 registros nuevos/actualizados.
