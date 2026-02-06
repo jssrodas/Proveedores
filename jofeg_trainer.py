@@ -1,10 +1,22 @@
-
 import os
 import fitz  # PyMuPDF
 import json
+import logging
 from pathlib import Path
 
-TEMPLATES_PATH = r"c:\Proyectos\Proveedores\templates.json"
+BASE_DIR = Path(r"c:\Proyectos\Proveedores")
+TEMPLATES_PATH = BASE_DIR / "templates.json"
+LOG_FILE = BASE_DIR / "idp_processor.log"
+
+# Configurar logging para que guarde en el mismo sitio que el procesador
+logging.basicConfig(
+    level=logging.INFO,
+    format='%(asctime)s [%(levelname)s] %(message)s',
+    handlers=[
+        logging.FileHandler(LOG_FILE),
+        logging.StreamHandler()
+    ]
+)
 
 class JofegTrainer:
     def __init__(self):
@@ -95,12 +107,27 @@ class JofegTrainer:
         print("\nBusca en el PDF abierto los números que corresponden a cada campo.")
         return mapping_data
 
+    def normalize_id(self, text):
+        """Normalización unificada de CIF/NIF (Mismo método que jofeg_idp_processor)"""
+        if not text: return ""
+        import re
+        norm = re.sub(r'[^A-Z0-9]', '', str(text).upper())
+        if norm.startswith("ES") and len(norm) > 7:
+            return norm[2:]
+        return norm
+
     def save_template(self, cif, mapping_data, selections):
         """Guarda la plantilla asociada a un CIF"""
-        # Normalizar CIF para asegurar coincidencia (mismo método que jofeg_idp_processor)
-        import re
-        cif_key = re.sub(r'[^A-Z0-9]', '', str(cif).upper())
+        cif_key = self.normalize_id(cif)
         
+        # RE-CARGAR para evitar machacar cambios de otras ventanas
+        if os.path.exists(TEMPLATES_PATH):
+            try:
+                with open(TEMPLATES_PATH, 'r', encoding='utf-8') as f:
+                    self.templates = json.load(f)
+            except:
+                pass
+
         template = {
             "cif": cif_key,
             "fields": {}
@@ -114,10 +141,12 @@ class JofegTrainer:
                     "text_hint": block["text"] # Usado como ancla de seguridad
                 }
         
-        self.templates[cif] = template
-        with open(TEMPLATES_PATH, 'w') as f:
+        self.templates[cif_key] = template
+        with open(TEMPLATES_PATH, 'w', encoding='utf-8') as f:
             json.dump(self.templates, f, indent=4)
-        print(f"\n[PLANTILLA GUARDADA]: Registrada para el CIF {cif}")
+        
+        logging.info(f"[PLANTILLA GUARDADA]: Registrada para el CIF {cif} en {TEMPLATES_PATH}")
+        logging.info(f"[PLANTILLA GUARDADA]: Total plantillas ahora: {len(self.templates)}")
 
 if __name__ == "__main__":
     import sys

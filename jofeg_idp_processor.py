@@ -69,10 +69,15 @@ class JofegIDPProcessor:
     def _load_templates(self):
         if os.path.exists(TEMPLATES_PATH):
             try:
-                with open(TEMPLATES_PATH, 'r') as f:
-                    return json.load(f)
-            except:
+                with open(TEMPLATES_PATH, 'r', encoding='utf-8') as f:
+                    data = json.load(f)
+                    logging.info(f"[TEMPLATES]: Cargadas {len(data)} plantillas desde {TEMPLATES_PATH}")
+                    logging.info(f"[TEMPLATES]: Claves encontradas: {list(data.keys())}")
+                    return data
+            except Exception as e:
+                logging.error(f"Error cargando plantillas: {e}")
                 return {}
+        logging.warning(f"No se encontró archivo de plantillas en {TEMPLATES_PATH}")
         return {}
 
     def _ensure_output_dir(self):
@@ -113,7 +118,11 @@ class JofegIDPProcessor:
     def normalize_id(text):
         """Limpia CIF/NIF de caracteres especiales para matching exacto"""
         if not text or pd.isna(text): return ""
-        return re.sub(r'[^A-Z0-9]', '', str(text).upper())
+        norm = re.sub(r'[^A-Z0-9]', '', str(text).upper())
+        # Eliminar prefijo ES si está presente (común en facturas pero no en ERP)
+        if norm.startswith("ES") and len(norm) > 7:
+            return norm[2:]
+        return norm
 
     def get_file_fingerprint(self, filepath):
         """Genera una huella digital única (mtime + size) para procesamiento incremental"""
@@ -154,16 +163,64 @@ class JofegIDPProcessor:
 
     def parse_fields(self, text, doc=None, pdf_path=None):
         """Extrae campos mediante plantillas (si existen), Claude API o regex"""
+        # --- NUEVO: Verificación de si es FACTURA ---
+        keywords = ["FACTURA", "INVOICE", "ALBARAN", "CREDIT NOTE"]
+        if not any(k in text.upper() for k in keywords):
+            logging.warning(f"No se detectaron palabras clave de factura en {pdf_path.name if pdf_path else 'documento'}")
+            return {"status": "ERROR: No es factura", "extraction_method": "FAILED"}
+
         # 1. Identificar CIF para ver si hay plantilla
-        norm_text = self.normalize_id(text)
-        cifs = re.findall(REGEX_CIF, norm_text)
-        # Filtrar duplicados y el CIF de JOFEG (incluyendo variante con ES)
-        unique_cifs = [c for c in dict.fromkeys(cifs) if c != JOFEG_CIF and c != "ES" + JOFEG_CIF]
-        primary_cif = unique_cifs[0] if unique_cifs else None
+        # Limpieza básica para regex pero sin normalizar el 'ES' aquí todavía
+        clean_text = re.sub(r'[^A-Z0-9]', '', text.upper())
+        cifs = re.findall(REGEX_CIF, clean_text)
         
+        # Filtrar duplicados y el CIF de JOFEG
+        unique_cifs = [c for c in dict.fromkeys(cifs) if c != JOFEG_CIF and c != "ES" + JOFEG_CIF]
+
+        # --- NUEVO: Fallback agresivo para PDFs con texto basura (OCR malo) ---
+        # Si no hay CIFs en el texto, mirar si el NOMBRE DEL ARCHIVO contiene un CIF conocido
+        if not unique_cifs and pdf_path:
+            filename = Path(pdf_path).name.upper()
+            for known_cif in self.templates.keys():
+                if known_cif in filename:
+                    unique_cifs = [known_cif]
+                    logging.info(f"Fallback: CIF {known_cif} encontrado en el nombre del archivo (Texto basura détectado)")
+                    break
+
+        # BUSCAR PLANTILLA O ERP: Probar todos los CIFs detectados para elegir el mejor
+        primary_cif = None
+        raw_cif = None
+        
+        # Prioridad 1: CIF con Plantilla
+        for cif in unique_cifs:
+            norm = self.normalize_id(cif)
+            if norm in self.templates:
+                primary_cif = norm
+                raw_cif = cif
+                logging.info(f"Prioridad 1: Coincidencia por PLANTILLA para {cif}")
+                break
+        
+        # Prioridad 2: CIF con ERP (si no hay plantilla arriba)
+        if not primary_cif:
+            for cif in unique_cifs:
+                norm = self.normalize_id(cif)
+                if not self.suppliers[self.suppliers['CIF_NORM'] == norm].empty:
+                    primary_cif = norm
+                    raw_cif = cif
+                    logging.info(f"Prioridad 2: Coincidencia por ERP para {cif}")
+                    break
+            
+        # Prioridad 3: Primer CIF encontrado (si nada más sirve)
+        if not raw_cif and unique_cifs:
+            raw_cif = unique_cifs[0]
+            primary_cif = self.normalize_id(raw_cif)
+            logging.info(f"Prioridad 3: Usando primer CIF detectado: {raw_cif}")
+
+        logging.info(f"Elegido: {raw_cif} (Normalizado: {primary_cif}) de entre {unique_cifs}")
+
         # Inicializar resultados con detección básica
         results = {
-            "supplier_tax_id": primary_cif,
+            "supplier_tax_id": raw_cif,
             "all_detected_ids": ", ".join(unique_cifs),
             "invoice_number": None,
             "invoice_date": None,
@@ -171,52 +228,59 @@ class JofegIDPProcessor:
             "iva_importe": None,
             "total_amount": None,
             "currency": "EUR" if "€" in text or "EUR" in text.upper() else "N/A",
-            "extraction_method": "REGEX"
+            "extraction_method": "REGEX",
+            "status": "OK"
         }
 
         # 2. Intentar usar PLANTILLA ZONAL
-        if primary_cif in self.templates and doc:
+        if primary_cif and primary_cif in self.templates and doc:
+            logging.info(f"Usando plantilla para CIF: {primary_cif}")
             template = self.templates[primary_cif]
             results["extraction_method"] = "TEMPLATE"
             page = doc[0]
             for field, info in template.get("fields", {}).items():
                 rect = fitz.Rect(info["bbox"])
-                val = page.get_text("text", clip=rect).strip()
+                field_text = page.get_text("text", clip=rect).strip()
                 
-                # REFINAMIENTO: Si el campo es CIF, limpiarlo usando Regex
-                # Esto es crucial si el usuario seleccionó un bloque grande que contiene el CIF + basura
-                if field == "supplier_tax_id" and val:
-                    found_cifs = re.findall(REGEX_CIF, self.normalize_id(val))
-                    if found_cifs:
-                         # Tomar el primer CIF que no sea el de JOFEG
-                         valid_cifs = [c for c in found_cifs if c != JOFEG_CIF and c != "ES" + JOFEG_CIF]
-                         if valid_cifs:
-                             val = valid_cifs[0]
-                
-                if val: results[field] = val
+                # REGLA DE CONFIANZA (Template Trust):
+                # Si el campo es el CIF y está vacío (p.e. imagen sombreada), heredar de la plantilla
+                if field == "supplier_tax_id" and not field_text:
+                    logging.info(f"CIF vacío en zona de plantilla. Usando CIF de plantilla: {primary_cif}")
+                    results[field] = primary_cif
+                elif field == "supplier_tax_id" and field_text:
+                    # Búsqueda inteligente dentro del cuadro
+                    cif_pattern = r'[A-Z]?[0-9]{8}[A-Z]?'
+                    matches = re.findall(cif_pattern, self.normalize_id(field_text))
+                    results[field] = matches[0] if matches else field_text
+                else:
+                    results[field] = field_text
 
-                if val: results[field] = val
+        # 3. MATCHING CON MAESTRO ERP (Prioridad 1: CIF de resultados, Prioridad 2: CIFs detectados)
+        final_cif = self.normalize_id(results["supplier_tax_id"])
+        
+        # Intentar buscar el proveedor en el ERP
+        match_data = self.suppliers[self.suppliers['CIF_NORM'] == final_cif]
+        
+        if match_data.empty and unique_cifs:
+            # Si el CIF de la plantilla/extracción no está en ERP, probar otros detectados
+            for c in unique_cifs:
+                norm_c = self.normalize_id(c)
+                match_data = self.suppliers[self.suppliers['CIF_NORM'] == norm_c]
+                if not match_data.empty:
+                    final_cif = norm_c
+                    results["supplier_tax_id"] = c
+                    logging.info(f"Cambiando a CIF detectado con match ERP: {final_cif}")
+                    break
+        
+        # Si sigue sin match ERP pero tenemos plantilla, permitir procesar con aviso
+        if match_data.empty:
+             if results["extraction_method"] == "TEMPLATE":
+                 results["status"] = "OK (Proveedor no en ERP)"
+                 logging.warning(f"Proveedor {results['supplier_tax_id']} detectado por plantilla pero no está en PROVEE.csv")
+             else:
+                 results["status"] = "NO_MATCH"
 
-        # 2a. Fallback: Intentar matching por NOMBRE DE ARCHIVO
-        # Si no encontramos CIF o no hay plantilla por CIF, buscar si alguna plantilla
-        # tiene definida una regla de coincidencia por nombre de archivo
-        elif doc:
-             # Buscar en todas las plantillas si alguna tiene "filename_pattern"
-             for tmpl_cif, tmpl_data in self.templates.items():
-                 pattern = tmpl_data.get("filename_pattern")
-                 if pattern and pattern in Path(pdf_path).name:
-                     logging.info(f"Usando plantilla por nombre de archivo ({pattern}) para {Path(pdf_path).name}")
-                     results["extraction_method"] = "TEMPLATE_NAME"
-                     results["supplier_tax_id"] = tmpl_cif # Asignar el CIF de la plantilla
-                     
-                     page = doc[0]
-                     for field, info in tmpl_data.get("fields", {}).items():
-                        rect = fitz.Rect(info["bbox"])
-                        val = page.get_text("text", clip=rect).strip()
-                        if val: results[field] = val
-                     break
-
-        # 3. Si NO hay plantilla Y Claude API está disponible, usarlo
+        # 3a. Si NO hay plantilla Y Claude API está disponible, usarlo
         elif (self.use_claude_api and 
               self.claude_extractor and 
               self.claude_as_fallback_only and 
@@ -359,11 +423,11 @@ class JofegIDPProcessor:
             })
 
             # Matching ERP por CIF
-            cif_norm = self.normalize_id(fields["supplier_tax_id"])
+            cif_norm = self.normalize_id(fields.get("supplier_tax_id", ""))
             match = self.suppliers[self.suppliers['CIF_NORM'] == cif_norm]
             
             # Contexto para depuración
-            row["match_debug"] = self.get_cif_context(text, fields["supplier_tax_id"])
+            row["match_debug"] = self.get_cif_context(text, fields.get("supplier_tax_id", ""))
 
             if not match.empty:
                 row.update({
@@ -371,16 +435,22 @@ class JofegIDPProcessor:
                     "supplier_account": match.iloc[0]['CUENTA'],
                     "match_method": "CIF",
                     "match_score": 100
+                    # El status ya viene como "OK" de parse_fields
                 })
             else:
                 row.update({
                     "supplier_name_erp": "",
                     "supplier_account": "",
                     "match_method": "NONE",
-                    "match_score": 0,
-                    "status": "NO_MATCH"
+                    "match_score": 0
                 })
-                logging.warning(f"NO_MATCH: No se encontró proveedor para CIF {fields['supplier_tax_id']} en {pdf_path.name}")
+                
+                # REGLA ORO: Si parse_fields ya decidió que es un éxito (por plantilla), NO degradar a NO_MATCH
+                if fields.get("status", "").startswith("OK"):
+                    logging.info(f"Manteniendo status {fields['status']} (Template detected) para {pdf_path.name}")
+                else:
+                    row["status"] = "NO_MATCH"
+                    logging.warning(f"NO_MATCH: No se encontró proveedor para CIF {fields.get('supplier_tax_id')} en {pdf_path.name}")
 
             results.append(row)
             self.state[file_key] = fingerprint

@@ -6,7 +6,7 @@ import os
 from pathlib import Path
 
 class JofegTrainerGUI:
-    def __init__(self, root, initial_pdf=None):
+    def __init__(self, root, initial_pdf=None, initial_cif=None):
         self.root = root
         self.root.title("Jofeg IDP - Entrenador Zonal")
         self.root.geometry("500x550")
@@ -18,6 +18,11 @@ class JofegTrainerGUI:
 
         self._build_ui()
         
+        # Pre-rellenar CIF si se proporciona
+        if initial_cif:
+            self.entries["cif"].insert(0, initial_cif)
+            self._update_norm_preview()
+
         # Si se proporciona un PDF inicial, cargarlo automáticamente
         if initial_pdf and os.path.exists(initial_pdf):
             self.root.after(100, lambda: self._load_pdf(initial_pdf))
@@ -55,12 +60,23 @@ class JofegTrainerGUI:
             entry = tk.Entry(frame_id)
             entry.grid(row=i, column=1, sticky="ew", padx=(10, 0), pady=5)
             self.entries[key] = entry
+            
+            if key == "cif":
+                self.lbl_norm_cif = tk.Label(frame_id, text="Normalizado: -", fg="blue", font=("Arial", 8, "italic"))
+                self.lbl_norm_cif.grid(row=i+1, column=1, sticky="w")
+                entry.bind("<KeyRelease>", self._update_norm_preview)
         
         frame_id.columnconfigure(1, weight=1)
 
         # Botón Guardar
         self.btn_save = tk.Button(self.root, text="2. Guardar Plantilla", command=self.save_template, state="disabled", bg="#28a745", fg="white", font=("Arial", 10, "bold"), height=2)
         self.btn_save.pack(fill="x", pady=10)
+
+    def _update_norm_preview(self, event=None):
+        cif = self.entries["cif"].get().strip()
+        from jofeg_idp_processor import JofegIDPProcessor
+        norm = JofegIDPProcessor.normalize_id(cif)
+        self.lbl_norm_cif.config(text=f"Normalizado: {norm}")
 
     def select_pdf(self):
         file_path = filedialog.askopenfilename(
@@ -98,12 +114,22 @@ class JofegTrainerGUI:
                 selections[key] = int(val)
         
         if not selections:
-            messagebox.showwarning("Faltan IDs", "Debes introducir al menos un ID de bloque.")
-            return
+            # Si solo hay CIF, permitimos guardar igualmente para vinculación de proveedor
+            confirm = messagebox.askyesno(
+                "Mapeo Vacío", 
+                "No has mapeado ningún campo (Nº Factura, IVA, etc.).\n\n"
+                "¿Deseas guardar la plantilla solo para identificar al proveedor por este CIF?"
+            )
+            if not confirm:
+                return
 
         try:
             self.trainer.save_template(cif, self.current_mapping, selections)
-            # Cierre silencioso tras éxito, el usuario ya ve en el log que se guardó
+            messagebox.showinfo(
+                "Plantilla Guardada", 
+                f"✅ La plantilla para el CIF {cif} se ha guardado correctamente.\n\n"
+                "Ahora puedes cerrar esta ventana y volver a procesar las facturas."
+            )
             self.root.destroy()
         except Exception as e:
             messagebox.showerror("Error", f"No se pudo guardar la plantilla: {e}")
@@ -112,7 +138,8 @@ if __name__ == "__main__":
     import sys
     root = tk.Tk()
     
-    # Permitir pasar un PDF como argumento de línea de comandos
+    # Permitir pasar un PDF y un CIF como argumentos de línea de comandos
     initial_pdf = sys.argv[1] if len(sys.argv) > 1 else None
-    app = JofegTrainerGUI(root, initial_pdf)
+    initial_cif = sys.argv[2] if len(sys.argv) > 2 else None
+    app = JofegTrainerGUI(root, initial_pdf, initial_cif)
     root.mainloop()

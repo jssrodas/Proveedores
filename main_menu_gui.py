@@ -391,18 +391,25 @@ ARCHIVO:
                     return
                 
                 pdf_path = file_paths[selection[0]]
+                # Obtener el CIF de la línea seleccionada (formato: [freq] CIF -> filename)
+                display_text = listbox.get(selection[0])
+                import re
+                cif_match = re.search(r'\]\s+([A-Z0-9]+)\s+→', display_text)
+                detected_cif = cif_match.group(1) if cif_match else ""
+
                 if not Path(pdf_path).exists():
                     messagebox.showerror("Error", f"El archivo no existe:\n{pdf_path}")
                     return
                 
                 select_window.destroy()
                 
-                # Abrir trainer GUI con el archivo seleccionado
+                # Abrir trainer GUI con el archivo seleccionado y el CIF pre-rellenado
                 try:
-                    subprocess.Popen(
-                        [sys.executable, "jofeg_trainer_gui.py", pdf_path],
-                        cwd=BASE_DIR
-                    )
+                    cmd = [sys.executable, "jofeg_trainer_gui.py", pdf_path]
+                    if detected_cif:
+                        cmd.append(detected_cif)
+                    
+                    subprocess.Popen(cmd, cwd=BASE_DIR)
                     messagebox.showinfo(
                         "Entrenador Abierto",
                         f"Se ha abierto el entrenador con la factura seleccionada.\n\n"
