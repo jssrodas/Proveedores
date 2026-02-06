@@ -330,10 +330,10 @@ ARCHIVO:
                 return
             
             # Rellenar valores nulos para evitar errores "nan"
-            no_match['supplier_tax_id'] = no_match['supplier_tax_id'].fillna("DESCONOCIDO")
+            no_match['CIF'] = no_match['CIF'].fillna("DESCONOCIDO")
             
             # Agrupar por CIF y contar
-            cif_counts = no_match['supplier_tax_id'].value_counts()
+            cif_counts = no_match['CIF'].value_counts()
             
             # Ventana de selección
             select_window = tk.Toplevel(self.root)
@@ -370,15 +370,20 @@ ARCHIVO:
             scrollbar.config(command=listbox.yview)
             
             # Ordenar por frecuencia de CIF (más frecuentes primero)
-            no_match['freq'] = no_match['supplier_tax_id'].map(cif_counts)
+            no_match['freq'] = no_match['CIF'].map(cif_counts)
             no_match = no_match.sort_values('freq', ascending=False)
             
             # Llenar lista
             file_paths = []
             for idx, row in no_match.iterrows():
-                cif = row['supplier_tax_id']
+                cif = row['CIF']
                 freq = cif_counts[cif]
-                filename = row['file_name']
+                
+                # Fallback por si file_name no existe (error reciente)
+                if 'file_name' in row and pd.notna(row['file_name']):
+                    filename = row['file_name']
+                else:
+                    filename = Path(str(row['file_path'])).name
                 
                 display = f"[{freq:2d}x] {cif:15s} → {filename}"
                 listbox.insert(tk.END, display)

@@ -2,7 +2,7 @@
 import fitz
 from pathlib import Path
 
-pdf_path = r"X:\Facts_Proveedor\Factura_1_260435.pdf"
+pdf_path = r"c:\Proyectos\Proveedores\Factura_5060628929_20260128_MAPA.pdf"
 
 if not Path(pdf_path).exists():
     # Intentar buscarlo en el directorio si la ruta exacta cambió

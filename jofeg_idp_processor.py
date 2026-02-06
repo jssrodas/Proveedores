@@ -177,8 +177,53 @@ class JofegIDPProcessor:
         # Filtrar duplicados y el CIF de JOFEG
         unique_cifs = [c for c in dict.fromkeys(cifs) if c != JOFEG_CIF and c != "ES" + JOFEG_CIF]
 
+        # --- NUEVO: Fallback por NOMBRE DE PROVEEDOR (Tu idea de la División 2) ---
+        # Si no encontramos CIF, buscamos si aparece el NOMBRE de algún proveedor conocido
+        if not unique_cifs:
+            logging.info("CIF no encontrado. Buscando por Nombre de Proveedor en el texto...")
+            # Optimizacion: Ordenar proveedores por longitud de nombre (primero los largos para evitar "SOL" dentro de "SOLUCIONES")
+            # Filtrar nombres muy cortos (< 4) para evitar falsos positivos
+            
+            # Crear lista temporal si no existe
+            if not hasattr(self, 'cached_names'):
+                self.cached_names = []
+                # Sufijos legales a ignorar para matching parcial robusto
+                legal_suffixes = [
+                    r'\bS\.?L\.?U?\.?\b', r'\bS\.?A\.?U?\.?\b', r'\bS\.?C\.?\b', 
+                    r'\bS\.?R\.?L\.?\b', r'\bLIMITADA\b', r'\bSOCIEDAD\b', r'\bANONIMA\b'
+                ]
+                suffix_pattern = re.compile('|'.join(legal_suffixes), re.IGNORECASE)
+
+                for idx, row in self.suppliers.iterrows():
+                    raw_name = str(row['NOMBRE']).strip().upper()
+                    if len(raw_name) < 3: continue
+
+                    # 1. Limpiar caracteres raros dejando letras y números
+                    clean_name = re.sub(r'[^A-Z0-9\s]', ' ', raw_name)
+                    
+                    # 2. Quitar sufijos legales (ej. "EMPRESA S.L." -> "EMPRESA")
+                    core_name = suffix_pattern.sub('', clean_name).strip()
+                    
+                    # 3. Compactar espacios
+                    core_name = re.sub(r'\s+', ' ', core_name).strip()
+
+                    # Solo usar si queda un nombre significativo (> 3 chars y no es solo números)
+                    if len(core_name) > 3 and not core_name.isdigit():
+                        self.cached_names.append((core_name, row['CIF_NORM'], row['CIF']))
+                
+                # Ordenar por longitud descendente (priorizar nombres largos para evitar falsos positivos)
+                self.cached_names.sort(key=lambda x: len(x[0]), reverse=True)
+
+            normalized_text = re.sub(r'[^A-Z0-9\s]', '', text.upper())
+            
+            for name, cif_norm, raw_cif_erp in self.cached_names:
+                if name in normalized_text:
+                    unique_cifs = [raw_cif_erp]
+                    logging.info(f"Fallback ÉXITO: Proveedor identificado por nombre '{name}' -> CIF {raw_cif_erp}")
+                    break
+
         # --- NUEVO: Fallback agresivo para PDFs con texto basura (OCR malo) ---
-        # Si no hay CIFs en el texto, mirar si el NOMBRE DEL ARCHIVO contiene un CIF conocido
+        # Si sigue sin haber CIFs, mirar si el NOMBRE DEL ARCHIVO contiene un CIF conocido
         if not unique_cifs and pdf_path:
             filename = Path(pdf_path).name.upper()
             for known_cif in self.templates.keys():
@@ -280,12 +325,34 @@ class JofegIDPProcessor:
              else:
                  results["status"] = "NO_MATCH"
 
-        # 3a. Si NO hay plantilla Y Claude API está disponible, usarlo
-        elif (self.use_claude_api and 
-              self.claude_extractor and 
-              self.claude_as_fallback_only and 
-              primary_cif not in self.templates and
-              pdf_path):
+        # 3a. Lógica de Fallback a Claude (Si no hay plantilla, O si la plantilla falló en campos críticos)
+        # 3a. Lógica de Fallback a Claude (Si no hay plantilla, O si la plantilla falló en campos críticos)
+        # Importante: Comprobar None, string vacío, o "0.0"
+        def is_empty_amount(val):
+            if val is None: return True
+            s = str(val).strip().replace('.', '').replace(',', '')
+            return not s or s == "0" or s == "00"
+
+        missing_critical = (is_empty_amount(results.get("total_amount")) or 
+                            is_empty_amount(results.get("base_imponible")))
+        
+        # Permitir Claude si:
+        # A) No tenemos plantilla y está habilitado como fallback
+        # B) Tenemos plantilla pero faltan datos críticos (y Claude está disponible)
+        should_use_claude = False
+        
+        if self.use_claude_api and self.claude_extractor and pdf_path:
+             if primary_cif not in self.templates:
+                 # Caso A: No hay plantilla (y claude_as_fallback_only controla si entramos aquí o no, 
+                 # pero asumimos que si no hay plantilla, queremos intentar Claude si está en fallback mode)
+                 if self.claude_as_fallback_only:
+                     should_use_claude = True
+             elif missing_critical:
+                 # Caso B: Hay plantilla pero faltan datos (Imagen, fondo oscuro, texto ilegible)
+                 logging.info(f"Plantilla detectada pero faltan importes críticos en {Path(pdf_path).name}. Activando Claude fallback.")
+                 should_use_claude = True
+
+        if should_use_claude:
             
             try:
                 logging.info(f"Usando Claude API para {Path(pdf_path).name}")
@@ -463,7 +530,10 @@ class JofegIDPProcessor:
             logging.info("No hay cambios detectados desde la última ejecución.")
 
     def export(self, data):
-        # Sanitizar datos para Excel (eliminar caracteres de control)
+        # Mapeo de columnas solicitado
+        # Proveedor (nombre), Nº Factura, Fecha, CIF, Base Imponible, Iva, Total factura, Conta
+        
+        # Sanitizar datos
         import string
         ILLEGAL_CHARACTERS_RE = re.compile(r'[\x00-\x08\x0b-\x0c\x0e-\x1f\x7f-\x9f]')
         
@@ -473,11 +543,57 @@ class JofegIDPProcessor:
                     row[key] = ILLEGAL_CHARACTERS_RE.sub('', value)
         
         df_new = pd.DataFrame(data)
+        
+        # Mapa de renombramiento (Interno -> Visual)
+        column_map = {
+            'supplier_name_erp': 'Proveedor',
+            'invoice_number': 'Nº Factura',
+            'invoice_date': 'Fecha',
+            'supplier_tax_id': 'CIF',
+            'base_imponible': 'Base Imponible',
+            'iva_importe': 'Iva',
+            'total_amount': 'Total factura',
+            'supplier_account': 'Conta',
+            'file_path': 'file_path',
+            'status': 'status',
+            'file_name': 'file_name'
+        }
+        
+        # Asegurar que df_new tenga todas las columnas internas antes de renombrar
+        for col in column_map.keys():
+            if col not in df_new.columns:
+                df_new[col] = ""
+        
+        # Renombrar df_new
+        df_new = df_new.rename(columns=column_map)
+        
+        # Columnas finales deseadas
+        final_cols = ['Proveedor', 'Nº Factura', 'Fecha', 'CIF', 'Base Imponible', 'Iva', 'Total factura', 'Conta', 'file_name', 'file_path', 'status']
+        
+        # Asegurar columnas en df_new
+        for col in final_cols:
+             if col not in df_new.columns:
+                 df_new[col] = ""
+        df_new = df_new[final_cols]
+
         if os.path.exists(OUTPUT_XLSX):
             try:
                 df_old = pd.read_excel(OUTPUT_XLSX)
+                
+                # MIGRACIÓN: Renombrar columnas antiguas en df_old si existen
+                # Esto recupera los datos de ejecuciones anteriores
+                df_old = df_old.rename(columns=column_map)
+                
+                # Asegurar columnas en df_old
+                for col in final_cols:
+                    if col not in df_old.columns:
+                        df_old[col] = ""
+                
+                df_old = df_old[final_cols]
+                
                 df_final = pd.concat([df_old, df_new], ignore_index=True).drop_duplicates(subset=['file_path'], keep='last')
-            except:
+            except Exception as e:
+                logging.warning(f"No se pudo leer Excel anterior o migrar datos: {e}. Creando nuevo.")
                 df_final = df_new
         else:
             df_final = df_new
